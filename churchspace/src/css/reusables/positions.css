@@ -1,0 +1,60 @@
+.center{
+    justify-content: center;
+    align-items: center;
+}
+.right{
+    justify-content: right;
+    align-items: right;
+}
+.left {
+    justify-content: left;
+    align-items: left;
+}
+.bottom{
+    align-items: baseline;
+}
+.margin-center{
+    margin: auto;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+.margin-top10{
+
+    margin-top: 10px;
+
+}
+
+.margin-top20{
+
+    margin-top: 20px;
+
+}
+.margin-top50{
+
+    margin-top: 50px;
+
+}
+.margin-top250{
+
+    margin-top: 250px;
+
+}
+.margin-top100{
+
+    margin-top: 100px;
+
+}
+
+.margin-small{
+    margin: 5px;
+}
+
+.margin-med{
+    margin: 8px;
+}
+
+.margin-lr{
+    margin-left: 6px;
+    margin-right: 6px;
+}

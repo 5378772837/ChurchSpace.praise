@@ -1,0 +1,93 @@
+.admin-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.admin-sidebar{
+display: flex;
+flex-direction: column;
+width: 30vw;
+min-width: 300px;
+height: auto;
+justify-content:left;
+align-items:center;
+color: whitesmoke;
+background-color: navy;
+border:solid silver
+}
+
+.user-disp-col{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    scroll-behavior: smooth;
+
+}
+.user-disp-box {
+    flex: 0 1 200px;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    color: whitesmoke;
+    background-color:  navy;
+  }
+
+.sidebar-input-container{
+    flex-direction: column;
+    justify-content: center;
+    border: solid silver;
+    height:30px;
+    width: 200px;
+    border-radius: 5px;
+
+
+}
+
+.sidebar-input-container2{
+    flex-direction: column;
+    justify-content: center;
+    border: solid silver;
+    height:30px;
+    width: 300px;
+    border-radius: 5px;
+    margin: 10px;
+
+
+}
+
+.fill{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.subject-edit-box{
+    border-radius: 8px;
+    display: flex;
+    height: 150px;
+    width: 90%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    color:navy;
+    border:solid silver;
+    background-color:white;
+    margin: auto;
+}
+.admin-picture-box{
+    height:200px;
+    width: auto;
+}
+.input-container{
+    flex-direction: row;
+    justify-content: center;
+    border: solid silver;
+    margin-top: 10px;
+    height:30px;
+    width: 300px;
+}

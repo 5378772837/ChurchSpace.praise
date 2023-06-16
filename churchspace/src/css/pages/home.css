@@ -1,0 +1,43 @@
+.home-content{
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 100%;
+
+}
+
+.background {
+    background-image: url("https://wallpapercave.com/wp/wp3209638.png");
+    background-color:skyblue;
+    color:navy;
+    text-decoration:none;
+    text-shadow:5px 5px 5px grey;
+    
+}
+
+.welcome-box{
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:navy;
+    border:solid navy ;
+    background-color: white;
+    margin: auto;
+    height: 30%;
+    width: 50%;
+    border-radius: 30px;
+    
+}
+.message-col{
+    display:flex;
+    flex-direction: column;
+    height:15%;
+    width: 100%;
+}
+.body-row{
+    display:flex;
+    height:85%;
+    width: 100%;
+}
