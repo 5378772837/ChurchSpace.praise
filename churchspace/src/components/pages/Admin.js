@@ -96,10 +96,11 @@ const findAllUsers = () => {
                     <h3>FIND ALL</h3>
                     <button className="button2" onClick={findAllUsers}>FIND ALL USERS</button>
             </div>
-            <div className = 'user-disp-col scroll'>
+            <div className = 'user-disp-col flex-wrap scroll'>
+              
                 {showUsers()}
                 
-                      </div>
+                </div>
             </div>         
  
   
