@@ -107,5 +107,54 @@ public class SubjectController {
 		    }
 		    
 			}
+	
+
+	@RequestMapping(
+		    value = "/User/addSubject",
+		    consumes = MediaType.APPLICATION_JSON_VALUE,
+		    method = RequestMethod.POST
+		)
+		public void update(@RequestHeader(value = "Authorization") String token, @RequestBody Subject subject) {
+			
+			token = token.substring(7).trim();
+		    
+		    if (jwtUtil.validateJwtToken(token)) {
+		        try {
+		            subjectService.save(subject);
+		        } catch (Exception e) {
+		            System.out.println(e);
+		        } catch (Error e) {
+		            System.out.println(e);
+		        }
+		    }
+		    
+			}
+	
+	@RequestMapping(
+	        value="/User/findActive",
+	        produces = MediaType.APPLICATION_JSON_VALUE,
+	        method = RequestMethod.GET
+	    )
+	 public ResponseEntity<Object> findActiveForUser(@RequestHeader(value = "Authorization") String token) {
+	 	
+	 	token=token.substring(7).trim();
+	 	ResponseEntity <Object> responseEntity = null;
+	 	if (jwtUtil.validateJwtToken(token)) {
+	        try {
+	           List<Subject> activeSubjects = subjectService.findActive();
+	           responseEntity=new ResponseEntity<Object>(activeSubjects,HttpStatus.OK);
+	        } catch (Exception e) {
+	            System.out.println(e);
+	            responseEntity=new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+	        } catch (Error e) {
+	            System.out.println(e);
+	            responseEntity=new ResponseEntity<Object>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+	        }
+	 		}
+	 	System.out.println(responseEntity);
+	 	return responseEntity;
+
+	    }
+	
 
 }

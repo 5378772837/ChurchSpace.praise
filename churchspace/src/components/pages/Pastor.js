@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import '../../css/pages/SignIn.css'
-import '../../css/reusables/positions.css'
+
+
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../../css/pages/pastor.css'
@@ -169,6 +169,30 @@ useEffect(() => {
         console.error(error); // Log and handle any errors
       });
   };
+
+  const messageChangeHandler = (event, messageInst) => {
+
+    const checked = event.target.checked;
+    const updatedMessage= {
+      ...messageInst,
+      active: checked,
+    };
+  
+    axios
+      .post('http://localhost:8080/Message/Pastor/updateMessage', updatedMessage, {
+        headers: {
+          Authorization: `Bearer ${props.user.token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data); // Check the response data
+        // Perform any necessary updates based on the response
+      })
+      .catch((error) => {
+        console.error(error); // Log and handle any errors
+      });
+  };
+
 
 
 
@@ -437,7 +461,7 @@ const findTopics = (event) => {
         }
       
         return topics.map((topicInst) =>{
-          const { id, title, blog, creatorName, topicDate, subjectId, active} = topicInst
+          const { id, topicTitle, topicBlog, creatorName, topicDate, subjectId, active} = topicInst
       
           return (
             <div className='subject-edit-box'>
@@ -454,8 +478,8 @@ const findTopics = (event) => {
               </div>
               </div>
               <div className="blog-col">
-              <div className='flex-row center'>Title: {topicInst.title}</div>
-              <div className='flex-row center'>Message: {topicInst.blog}</div>
+              <div className='flex-row center'>Title: {topicInst.topicTitle}</div>
+              <div className='flex-row center'>Message: {topicInst.topicBlog}</div>
             </div>
             </div>
             </div>

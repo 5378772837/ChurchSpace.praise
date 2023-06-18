@@ -22,15 +22,25 @@ public class SubjectService {
 		return subjects;
 	}
 	
+	
+	
 	public List<Subject> findSubjectBySubject(String text){
 		List<Subject> subjects = subjectRepo.findSubjectBySubject(text);
 		return subjects;
 	}
+	
+	
 	public void update(Subject subject) throws Exception {	
 	    if(subject.getId() != null) {
 	    subjectRepo.save(subject);
 	    }
-	    throw new AccountNotFoundException("Subject does not exist! id not present");
+	    throw new Exception("Subject does not exist! id not present");
 	}
 	
+	
+	
+	public void save(Subject subject) throws Exception {	
+	    subjectRepo.save(subject);
+
+	}
 }

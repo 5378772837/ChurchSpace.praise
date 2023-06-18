@@ -75,7 +75,7 @@ function Header(props) {
                         </a>
                     </div>
                     <div>
-                        <a href="/Subjects">
+                        <a href="/ChurchBoard">
                             <div className='header-link'>CHURCH BOARD</div>
                         </a>
                     </div>
@@ -131,7 +131,7 @@ function Header(props) {
                         </a>
                     </div>
                     <div>
-                        <a href="/Subjects">
+                        <a href="/ChurchBoard">
                             <div className='header-link'>CHURCH BOARD</div>
                         </a>
                     </div>

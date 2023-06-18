@@ -7,8 +7,7 @@ import '../../css/pages/admin.css'
 
 
 function Admin(props)  {
-  console.log("Admin Page")
-  console.log(props.user)
+  
   const [users, setUsers]=useState([]);
   const [selectedUser, setSelectedUser]=useState("");
   const [search, setSearch]=useState([]);

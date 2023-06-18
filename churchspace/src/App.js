@@ -10,6 +10,8 @@ import Bible from "./components/pages/Bible";
 import EditUser from "./components/pages/EditUser"
 import AuthService from "./components/reusables/AuthService";
 import Pastor from "./components/pages/Pastor";
+import ChurchBoard from "./components/pages/ChurchBoard";
+import Subject from "./components/pages/Subject";
 // import User from "./components/pages/User";
 // import Pastor from "./components/pages/Pastor";
 import Admin from "./components/pages/Admin";
@@ -41,6 +43,8 @@ const App = () => {
           {/* <Route path="/User" element={<User user={user} setUser={setUser}/>} />
           <Route path="/Breeder" element={Pastor user={user} setUser={setUser}/>} />*/}
           <Route exact path="/EditUser" element={<EditUser user={user} setUser={setUser}/>} />
+          <Route exact path="/ChurchBoard" element={<ChurchBoard user={user} setUser={setUser}/>}/>
+          <Route exact path="/Subject" element={<Subject user={user} setUser={setUser}/>}/>
           <Route path="/Admin" element={<Admin user={user} setUser={setUser}/>} />
       </Routes>
     </PageWrapper>
