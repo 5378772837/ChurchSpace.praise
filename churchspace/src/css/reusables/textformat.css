@@ -1,8 +1,8 @@
 .small{
-    font-size: small;
+    font-size: 10px;
 }
 .medium{
-    font-size: medium;
+    font-size: 20px;
 }
 .large{
     font-size: 30px;
@@ -12,6 +12,12 @@
 }
 .xxl{
     font-size: 75px;
+}
+.white{
+    color: white;
+}
+.navy{
+    color:navy;
 }
 
 .input-box{
@@ -54,6 +60,6 @@ box-shadow: 0 12px 16px 0 white,0 17px 50px 0 grey;
 .thin-border{
 
     border: 5px;
-    border-color: navy;
+    border-color: solid navy;
    
 }

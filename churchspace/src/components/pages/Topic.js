@@ -1,49 +1,52 @@
 import React, { useEffect, useState } from 'react'
-import '../../css/pages/SignIn.css'
-import '../../css/reusables/positions.css'
+
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import '../../css/pages/pastor.css'
+import { useLocation, useNavigate } from 'react-router-dom';
+import '../../css/pages/topic.css'
 
 
-function Topic(props)  {
-  const { Subject } = location.state;
-
-  const [subjects, setSubjects]=useState([]);
-
-  const [topics, setTopics]=useState([]);
-  const [renderTopics, setRenderTopics]=useState(false);
-  const [topicsSearch, setTopicsSearch]=useState([])
-
-
-  const [posts, setPosts]=useState([]);
-  const [renderPosts, setRenderPosts]=useState(false);
-  const [postsSearch, setPostsSearch]=useState([])
-
+function Topic (props)  {
+  const location = useLocation();
+  const { topic } = location.state;
+  const [newPost, setNewPost] = useState({id:"",post:"",topicID:topic.id,active:true});
+  const [posts, setPosts]= useState([]);
+  const [selectedPostId, setSelectedPostId] = useState(null);
   const [comments, setComments]=useState([]);
+  const [newComment, setNewComment]=useState({id:"",comment:"",postID:'',creatorName:props.user.name})
   const [renderComments, setRenderComments]=useState(false);
-  const [commentsSearch, setCommentsSearch]=useState([])
+
 
   const navigator = useNavigate()
 
-const handleSubjectClick = (event) => {
-    axios.get("http://localhost:8080/Topic/User/")
-setSubjectsSearch(event.target.value);
-};
-const handlePostsSearchChange = (event) => {
-setPostsSearch(event.target.value);
-};
-const handleTopicsSearchChange = (event) => {
-setTopicsSearch(event.target.value);
-};
-const handleCommentsSearchChange = (event) => {
-setCommentsSearch(event.target.value);
-};
+  const changeHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    const tempPost = { ...newPost};
+    tempPost[name] = value;
+    setNewPost(tempPost)
+    }
+
+    const commentChangeHandler = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      const tempComment = { ...newComment};
+      tempComment[name] = value;
+      setNewComment(tempComment)
+      }
+
+
+      const handlePostClick = (event, postInst) => {
+        event.stopPropagation();
+        setSelectedPostId(postInst.id);
+        showComments(postInst);
+      };
 
 
 useEffect(() => {
+  console.log("Topic")
+  console.log(topic)
     if (props.user && props.user.token) {
-      axios.get("http://localhost:8080/Subject/User/findActive", {
+      axios.get(`http://localhost:8080/Post/User/findActiveByTopicId/${topic.id}`, {
         headers: {
           Authorization: `Bearer ${props.user.token}`,
         },
@@ -51,11 +54,10 @@ useEffect(() => {
         .then((response) => {
           console.log("response data", response.data);
           if (Array.isArray(response.data)) {
-            setSubjects(response.data);
+            setPosts(response.data);
           } else {
-            setSubjects([response.data]);
+            setPosts([response.data]);
           }
-          setRenderSubjects(true);
         })
         .catch((error) => {
           console.log(error);
@@ -63,287 +65,153 @@ useEffect(() => {
     }
   }, [props.user]);
 
+  const savePost = (e) => {
+    e.preventDefault();
+    const updatedPost = { ...newPost };
+    updatedPost.creatorName = props.user.name;
+    updatedPost.active = true;
+    updatedPost.topicID = topic.id;
 
+    console.log(updatedPost);
 
-
-  const subjectChangeHandler = (event, subjectInst) => {
-    console.log(subjectInst);
-    const checked = event.target.checked;
-    const updatedSubject = {
-      ...subjectInst,
-      active: checked,
-    };
-  
     axios
-      .post('http://localhost:8080/Subject/Pastor/updateSubject', updatedSubject, {
+      .post('http://localhost:8080/Post/User/addPost', updatedPost, {
         headers: {
           Authorization: `Bearer ${props.user.token}`,
         },
       })
       .then((response) => {
-        console.log(response.data); // Check the response data
-        // Perform any necessary updates based on the response
-      })
+        console.log(response.data);
+        setPosts(response.data);})
       .catch((error) => {
         console.error(error); // Log and handle any errors
       });
   };
 
-
-
-
-  const commentChangeHandler = (event, commentInst) => {
-    console.log(commentInst);
-    const checked = event.target.checked;
-    const updatedComment = {
-      ...commentInst,
-      active: checked,
-    };
+  const saveComment = (postInst) => {
   
+    const updatedComment = { ...newComment };
+    updatedComment.creatorName = props.user.name;
+    updatedComment.active = true;
+    updatedComment.postId = postInst.id;
+
     axios
-      .post('http://localhost:8080/Comment/Pastor/updateComment', updatedComment, {
+      .post('http://localhost:8080/Comment/User/addComment', updatedComment, {
         headers: {
           Authorization: `Bearer ${props.user.token}`,
         },
       })
       .then((response) => {
-        console.log(response.data); // Check the response data
-        // Perform any necessary updates based on the response
-      })
+        console.log(response.data);
+        setComments(response.data);})
       .catch((error) => {
         console.error(error); // Log and handle any errors
       });
   };
 
-  const postChangeHandler = (event, postInst) => {
-
-    const checked = event.target.checked;
-    const updatedPost= {
-      ...postInst,
-      active: checked,
-    };
-  
+  const showComments = (postInst) => {
     axios
-      .post('http://localhost:8080/Post/Pastor/updatePost', updatedPost, {
+      .get(`http://localhost:8080/Comment/User/findActiveByPostId/${postInst.id}`, {
         headers: {
           Authorization: `Bearer ${props.user.token}`,
         },
       })
       .then((response) => {
-        console.log(response.data); // Check the response data
-        // Perform any necessary updates based on the response
+        setComments(response.data);
       })
       .catch((error) => {
-        console.error(error); // Log and handle any errors
+        console.error(error);
       });
-  };
-
-
-  const topicChangeHandler = (event, topicInst) => {
-
-    const checked = event.target.checked;
-    const updatedTopic= {
-      ...topicInst,
-      active: checked,
-    };
   
-    axios
-      .post('http://localhost:8080/Topic/Pastor/updateTopic', updatedTopic, {
-        headers: {
-          Authorization: `Bearer ${props.user.token}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data); // Check the response data
-        // Perform any necessary updates based on the response
-      })
-      .catch((error) => {
-        console.error(error); // Log and handle any errors
-      });
-  };
-
-
-
-
-const findPosts = (event) => {
-    setRenderMessages(false)
-    setMessages([])
-    setRenderSubjects(false)
-    setSubjects([])
-    setRenderTopics(false)
-    setTopics([])
-    setRenderComments(false)
-    setComments([])
-  event.preventDefault();
-    
-  axios.get(`http://localhost:8080/Post/Pastor/findPost/${postsSearch}`, {
-  headers: {
-    Authorization: `Bearer ${props.user.token}`,
-  },
-})
-  .then((response) => {
-    console.log("response data", response.data);
-    setPosts(response.data); // Make sure response.data is an array
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-};
-
-
-
-const findComments = (event) => {
-    setRenderPosts(false)
-    setPosts([])
-    setRenderSubjects(false)
-    setSubjects([])
-    setRenderMessages(false)
-    setMessages([])
-    setRenderTopics(false)
-    setTopics([])
-  event.preventDefault();
-    
-  axios.get(`http://localhost:8080/Comment/Pastor/findComment/${commentsSearch}`, {
-  headers: {
-    Authorization: `Bearer ${props.user.token}`,
-  },
-})
-  .then((response) => {
-    console.log("response data", response.data);
-    setComments(response.data); // Make sure response.data is an array
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-};
-
-
-
-const findTopics = (event) => {
-    setRenderPosts(false)
-    setPosts([])
-    setRenderSubjects(false)
-    setSubjects([])
-    setRenderMessages(false)
-    setMessages([])
-    setRenderComments(false)
-    setComments([])
-  event.preventDefault();
-    
-  axios.get(`http://localhost:8080/Topic/Pastor/findTopic/${topicsSearch}`, {
-  headers: {
-    Authorization: `Bearer ${props.user.token}`,
-  },
-})
-  .then((response) => {
-    console.log("response data", response.data);
-    setTopics(response.data); // Make sure response.data is an array
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-};
-
-    const showComments = () => {
-        if (comments.length === 0) {
-          return <div>Loading Comments now, If this is here more than 2 seconds, something went wrong, try again...</div>; // Display a loading message or placeholder
-        }
-      
-        return comments.map((commentInst) => {
-          const { id, comment, creatorName, commentDate, postId, active} = commentInst;
-      
-          return (
-            <div className='subject-edit-box'>
-            <div classname="flex-row fill">
-              <div className=" info-col">
-              <div className="flex-col fill">
-              <div className='flex-row center'>ID: {commentInst.id}</div>
-              <div className='flex-row center'>Post Id: {commentInst.postId}</div>
-              <div className='flex-row center'>Post Date: {commentInst.postDate}</div>
-              <div className='flex-row center'>Creator Name: {commentInst.creatorName}</div>
-              <div className="flex-row">Active: <input name="active" type="checkbox" checked={active} onChange={(event) => commentChangeHandler(event, commentInst)} /></div>
-
-              
-              </div>
-              </div>
-              <div className="blog-col">
-              <div className='flex-row center'>Comment: {commentInst.comment}</div>
-              </div>
-              </div>
-
-            </div>
-          );
-        });
-      };
-
-      
- 
-
-      const showPosts = () => {
-        if (posts.length === 0) {
-          return <div>Loading Posts now, If this is here more than 5 seconds, something went wrong, try again...</div>;
-        }
-      
-        return posts.map((postInst) =>{
-          const { id, post, creatorName, postDate, topicId, active} = postInst
-      
-          return (
-            <div className='subject-edit-box'>
-            <div classname="flex-row fill">
-              <div className=" info-col">
-              <div className="flex-col fill">
-              <div className='flex-row center'>ID: {postInst.id}</div>
-              <div className='flex-row center'>Creator Name: {postInst.creatorName}</div>
-              <div className='flex-row center'>Post Date: {postInst.postDate}</div>
-              <div className='flex-row center'>Topic ID: {postInst.topicId}</div>
-              <div className="flex-row">Active: <input name="active" type="checkbox" checked={active} onChange={(event) => postChangeHandler(event, postInst)} /></div>
-
-
-              </div>
-              </div>
-              <div className="blog-col">
-              <div className='flex-row center'>Post: {postInst.post}</div>
-            </div>
-            </div>
-            </div>
-          );
-        });
-      };
-
-      const showTopics = () => {
-        if (topics.length === 0) {
-          return <div>Loading Topics now, If this is here more than 5 seconds, something went wrong, try again...</div>;
-        }
-      
-    
+    if (comments.length === 0) {
+      return <div>Loading Comments now. You could be the first to comment..</div>;
+    }
+  
+    return comments.map((commentInst) => {
+      const { id, comment, creatorName, commentDate, postId, active } = commentInst;
+  
       return (
-        <div>
-          {Topics.map((topicInst) => {          
-            const { id, title, blog, creatorName, topicDate, subjectId, active} = topicInst
-            return (
-              <div className='subject-edit-box' key={id} onClick={() => handleTopicClick(topicInst)}>
-                <div className="flex-row fill">
-                  <div className="info-col">
-                    <div className="flex-col fill">
-                      <div className="flex-row"> ID: {topicInst.id}</div>
-                      <div className="flex-row"> Date: {topicInst.date}</div>
-                      <div className="flex-row">Creator Name: {topicInst.creatorName}</div>
-                    </div>
-                  </div>
-                  <div className="blog-col">
-                    <div className='flex-row'>
-                    Title: {topicInst.title}
-                    </div>
-                    <div className = 'flex-row'>
-                    Blog: {topicInst.blog}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        <div className='flex-row' key={id}>
+          <div className='.comment-blog-col'>
+            <div className='flex-row fill'>ID: {commentInst.id}</div>
+            <div className='flex-row fill'>NAME: {commentInst.creatorName}</div>
+          </div>
+          <div className='comment-info-col'>
+            <div className='flex-row'>Comment: {commentInst.comment}</div>
+          </div>
         </div>
       );
-      }
-      }
+    });
+  };
+
+
+      return (
+        <div className="flex-col fill">
+          <div className="flex-row subject-header justify-content-center">
+            <h1>Topic: {topic.topicTitle} {topic.topicBlog}</h1>
+          </div>
+          <div className="post-header center">
+            <a className="large navy">Create New Post:</a>
+            <textarea className="sidebar-input-container3" style={{ whiteSpace: "normal" }}
+              name="post" type="text" onChange={changeHandler} placeholder="Enter the new post Here"></textarea>
+            <button className="button2" onClick={savePost}>
+              ADD NEW POST
+            </button>
+          </div>
+          <div className="post-body">
+            {posts.map((postInst) => {
+              const { id, post, creatorName, postDate, topicID, active } = postInst;
+              return (
+                <div className="post-box" key={id} onClick={(event) => handlePostClick(event, postInst)}>
+                  <div className="post-flex-col">
+                    <div className="flex-row">
+                      <div className="sub-info-col">
+                        <div className="flex-row large"> ID: {postInst.id}</div>
+                        <div className="flex-row"> Date: {postInst.postDate}</div>
+                        <div className="flex-row">
+                          Creator Name: {postInst.creatorName}
+                        </div>
+                      </div>
+                      <div className="sub-blog-col">
+                        <div className="flex-row medium flex-wrap"> Post: {postInst.post}</div>
+                      </div>
+                    </div>
+                    {selectedPostId === postInst.id && (
+                      <div className="comments-flex-col">
+                        {/* Render comments */}
+                        {comments.length === 0 ? (
+                          <div className='cw-flex-row'> Loading Comments now. You could be the first to comment..</div>
+                        ) : (
+                          comments.map((commentInst) => {
+                            const {id, comment, creatorName, commentDate, postId, active} = commentInst;
+                            return (
+                              <div className="flex-row" key={id}>
+                                <div className="comment-info-col">
+                                  <div className="flex-row">COMMENT ID: {commentInst.id}</div>
+                                  <div className="flex-row"> COMMENTOR: {commentInst.creatorName}</div>
+                                </div>
+                                <div className="comment-blog-col">
+                                  <div className="flex-row">Comment:</div>
+                                  <div className="flex-row medium">{commentInst.comment}</div>
+                                </div>
+                              </div>
+                            );
+                          })
+                        )}
+                        <div className="ce-flex-row center">
+                          <a className="large navy">Add a Comment:</a>
+                            <textarea className="sidebar-input-container3" style={{ whiteSpace: "normal" }} name="comment" type="text" 
+                              onChange={commentChangeHandler} placeholder="Enter your comment here"></textarea>
+                          <button className="button2" onClick={() => saveComment(postInst)}> ADD NEW COMMENT</button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+          }
           export default Topic

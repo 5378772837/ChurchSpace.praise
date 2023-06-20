@@ -59,11 +59,11 @@ public class Topic {
 		this.topicBlog = topicBlog;
 	}
 
-	public Integer getSubjectID() {
+	public Integer getSubjectId() {
 		return subjectId;
 	}
 
-	public void setSubjectID(Integer subjectId) {
+	public void setSubjectId(Integer subjectId) {
 		this.subjectId = subjectId;
 	}
 

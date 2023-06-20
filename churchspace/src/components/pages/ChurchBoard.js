@@ -46,7 +46,7 @@ function ChurchBoard(props)  {
     
       if (subjects.length === 0) {
         return (
-          <div>Loading Topics now. If this message is here for more than 5 seconds, something went wrong. Please try again...</div>
+          <div>Loading Subjects now. If there are no subjects contact your Pastor..</div>
         );
       }
       
@@ -65,8 +65,8 @@ function ChurchBoard(props)  {
                     </div>
                   </div>
                   <div className="cb-blog-col">
-                    <div className='flex-row large'>Subject: </div>
-                    <div className='flex-row'>{subjectInst.subject}</div>
+                    <div className='flex-row medium'>Subject: </div>
+                    <div className='flex-row large'>{subjectInst.subject}</div>
                   </div>
                 </div>
               </div>

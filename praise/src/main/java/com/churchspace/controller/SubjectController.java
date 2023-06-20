@@ -26,7 +26,6 @@ import com.churchspace.service.SubjectService;
 @RestController
 @RequestMapping(value="/Subject")
 @CrossOrigin("*")
-
 public class SubjectController {
 	
 	@Autowired
@@ -110,7 +109,7 @@ public class SubjectController {
 	
 
 	@RequestMapping(
-		    value = "/User/addSubject",
+		    value = "/Pastor/addSubject",
 		    consumes = MediaType.APPLICATION_JSON_VALUE,
 		    method = RequestMethod.POST
 		)

@@ -14,37 +14,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.churchspace.entity.Comment;
 import com.churchspace.entity.Subject;
-import com.churchspace.entity.Topic;
 import com.churchspace.security.jwt.JwtUtils;
-import com.churchspace.service.TopicService;
-
-
+import com.churchspace.service.CommentService;
 
 @RestController
-@RequestMapping(value="/Topic")
+@RequestMapping(value="/Comment")
 @CrossOrigin("*")
-public class TopicController {
+public class CommentController {
 	
 	@Autowired
 	JwtUtils jwtUtil;
 	
 	@Autowired
-	TopicService topicService;
+	CommentService commentService;
+	
 
 	@RequestMapping(
-	        value="/User/findActiveBySubjectId/{subjectId}",
+	        value="/User/findActiveByPostId/{postId}",
 	        produces = MediaType.APPLICATION_JSON_VALUE,
 	        method = RequestMethod.GET
 	    )
-	 public ResponseEntity<Object> findActiveBySubjectId(@RequestHeader(value = "Authorization") String token,@PathVariable Integer subjectId) {
+	 public ResponseEntity<Object> findActiveByPostId(@RequestHeader(value = "Authorization") String token,@PathVariable Integer postId) {
 	 	
 	 	token=token.substring(7).trim();
 	 	ResponseEntity <Object> responseEntity = null;
 	 	if (jwtUtil.validateJwtToken(token)) {
 	        try {
-	           List<Topic> activeTopics = topicService.findActiveBySubjectId(subjectId);
-	           responseEntity=new ResponseEntity<Object>(activeTopics,HttpStatus.OK);
+	           List<Comment> activeComments = commentService.findActiveByPostId(postId);
+	           responseEntity=new ResponseEntity<Object>(activeComments,HttpStatus.OK);
 	        } catch (Exception e) {
 	            System.out.println(e);
 	            responseEntity=new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -59,41 +58,42 @@ public class TopicController {
 	    }
 	
 	@RequestMapping(
-		    value = "/User/addTopic",
+		    value = "/User/addComment",
 		    consumes = MediaType.APPLICATION_JSON_VALUE,
 		    produces = MediaType.APPLICATION_JSON_VALUE,
 		    method = RequestMethod.POST
 		)
-		public List <Topic> save(@RequestHeader(value = "Authorization") String token, @RequestBody Topic topic) {
-			System.out.println(topic);
+		public List <Comment> save(@RequestHeader(value = "Authorization") String token, @RequestBody Comment comment) {
+			System.out.println(comment);
 			token = token.substring(7).trim();
-		    List<Topic>topics = null;
+		    List<Comment>comments = null;
 		    if (jwtUtil.validateJwtToken(token)) {
 		    	try {
-		            topics=topicService.save(topic);
+		            comments=commentService.save(comment);
 		        } catch (Exception e) {
 		            System.out.println(e);
 		        } catch (Error e) {
 		            System.out.println(e);
 		        }
-		    }return topics;
+		    }return comments;
 		    
 			}
 	
+	
 	@RequestMapping(
-	        value="/Pastor/findTopic/{text}",
+	        value="/Pastor/findComment/{text}",
 	        produces = MediaType.APPLICATION_JSON_VALUE,
 	        method = RequestMethod.GET
 	    )
-	    public ResponseEntity<Object> findTopicByTopic(@RequestHeader(value = "Authorization") String token,@PathVariable String text) {
+	    public ResponseEntity<Object> findCommentByComment(@RequestHeader(value = "Authorization") String token,@PathVariable String text) {
 			
 			token=token.substring(7).trim();
 			ResponseEntity <Object> responseEntity = null;
 			
 		 	if (jwtUtil.validateJwtToken(token)) {
 		 	try {
-		 		List<Topic> foundSubjects = topicService.findTopicByTopic("%"+text+"%");
-	            responseEntity = new ResponseEntity<Object>(foundSubjects, HttpStatus.OK);
+		 		List<Comment> foundComments = commentService.findCommentByComment("%"+text+"%");
+	            responseEntity = new ResponseEntity<Object>(foundComments, HttpStatus.OK);
 	        } catch (Exception e) {
 	            System.out.println(e);
 	            responseEntity=new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -104,6 +104,5 @@ public class TopicController {
 
 		 	}return responseEntity;
 		 }
-	
-	
+
 }

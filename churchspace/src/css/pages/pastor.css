@@ -6,50 +6,43 @@
 }
 
 .info-col{
-    height: 100px;
-    width: 250px;
+    height: 100%;
+    width: 15%;
     display:flex;
     flex-direction: column;
-    flex-grow: 3;
+    flex-grow: 1;
+    flex-shrink: 0;
+    background-color:silver;
+    border-radius: 8px;
+    outline:solid navy;
 }
 
 .blog-col{
- height:100%;
- width:75%;
- display:flex;
- flex-direction: column;
+    height:100%;
+    width:85%;
+    display:flex;
+    flex-direction: column;
+    border-radius: 8px;
+    flex-shrink: 0;
+    outline:solid navy;
 }
 
-.admin-sidebar{
-display: flex;
-flex-direction: column;
-width: 30vw;
-min-width: 300px;
-height: auto;
-justify-content:left;
-align-items:center;
-color: whitesmoke;
-background-color: navy;
-border:solid silver
-}
-
-.user-disp-col{
+.pastor-sidebar{
     display: flex;
     flex-direction: column;
-    width: 70%;
-    scroll-behavior: smooth;
+    width: 30%;
+    height:100%;
+    min-width: 375px;
+    height: auto;
+    justify-content:left;
+    align-items:center;
+    color: whitesmoke;
+    background-color: navy;
+    outline:solid silver;
+    flex-grow: 1;
+    overflow:auto;
 
 }
-.user-disp-box {
-    flex: 0 1 200px;
-    margin: 10px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    text-align: center;
-    color: whitesmoke;
-    background-color:  navy;
-  }
 
 .sidebar-input-container{
     flex-direction: column;
@@ -74,35 +67,54 @@ border:solid silver
 
 }
 
-.fill{
-    display: flex;
-    height: 100%;
-    width: 100%;
+.sidebar-input-container3{
+    flex-direction: column;
+    justify-content: center;
+    border: solid silver;
+    height:60px;
+    width: 800px;
+    border-radius: 5px;
+    margin: 10px;
+
+
 }
+
+.flex-col-past{
+
+flex-direction: column;
+flex-shrink: 0;
+width:70%;
+height:100%;
+
+}
+
 
 .subject-edit-box{
     border-radius: 8px;
     display: flex;
-    height: 150px;
-    width: 90%;
-    flex-direction: column;
+    height: 120px;
+    width: 98%;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     justify-content: center;
     color:navy;
-    border:solid silver;
     background-color:white;
-    margin: auto;
+    margin: 10px;
+    box-shadow: 10px 10px 10px grey;
 }
-.admin-picture-box{
-    height:200px;
-    width: auto;
+
+.pastor-sub-header{
+    height:10%;
+    width:100%;
+    outline: solid silver;
+    background-color: grey;
+
 }
-.input-container{
-    flex-direction: row;
-    justify-content: center;
-    border: solid silver;
-    margin-top: 10px;
-    height:30px;
-    width: 300px;
+.pastor-sub-body{
+    height:90%;
+    width:100%;
+    outline: solid siver;
+    flex-wrap: wrap;
+    overflow:auto;
 }
