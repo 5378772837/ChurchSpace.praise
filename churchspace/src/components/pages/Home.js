@@ -13,7 +13,10 @@ function Home() {
         <div className='flex-row center xl'>Welcome to our Church Space!</div>
         <div className='flex-row center large'>A site dedicated solely to members of our church!</div>
         </div>
-      <div className='body-row'></div>
+      <div className='body-row'>
+
+        
+      </div>
 
     </div>
 

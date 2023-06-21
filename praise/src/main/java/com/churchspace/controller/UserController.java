@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.churchspace.entity.ERole;
+
 import com.churchspace.entity.Role;
 import com.churchspace.entity.User;
-import com.churchspace.entity.UserProfile;
 import com.churchspace.security.jwt.AuthTokenFilter;
 import com.churchspace.security.jwt.JwtUtils;
 import com.churchspace.service.RoleService;
@@ -119,7 +118,7 @@ public ResponseEntity<Object> updateUser(@RequestHeader(value = "Authorization")
 }
 	 
 	 @RequestMapping(
-		        value="/updateUser",
+		        value="/User/updateUser",
 		        consumes = MediaType.APPLICATION_JSON_VALUE,
 		        produces = MediaType.APPLICATION_JSON_VALUE,
 		        method = RequestMethod.POST
@@ -189,6 +188,64 @@ public ResponseEntity<Object> updateUser(@RequestHeader(value = "Authorization")
 		 	return responseEntity;
 
 		    }
+	 
+		@RequestMapping(
+		        value="/User/findUserByEmail/{email}",
+		        produces = MediaType.APPLICATION_JSON_VALUE,
+		        method = RequestMethod.GET
+		    )
+		    public ResponseEntity <Object> findMeByEmail(@RequestHeader(value = "Authorization") String token,@PathVariable String email) {
+				
+				token=token.substring(7).trim();
+				ResponseEntity <Object> responseEntity = null;
+				
+			 	if (jwtUtil.validateJwtToken(token)) {
+			 	try {
+			 		User foundUser = userService.findMeByEmail(email);
+		            responseEntity = new ResponseEntity<Object>(foundUser, HttpStatus.OK);
+		        } catch (Exception e) {
+		            System.out.println(e);
+		            responseEntity=new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		        } catch (Error e) {
+		            System.out.println(e);
+		            responseEntity=new ResponseEntity<Object>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+		        }
+
+			 	}return responseEntity;
+			 }
+		
+		 @RequestMapping(
+			        value="/User/findAllActiveNames",
+			        produces = MediaType.APPLICATION_JSON_VALUE,
+			        method = RequestMethod.GET
+			    )
+			 public ResponseEntity<Object> findAllActiveNames(@RequestHeader(value = "Authorization") String token) {
+			 	
+			 	token=token.substring(7).trim();
+			 	ResponseEntity <Object> responseEntity = null;
+			 	if (jwtUtil.validateJwtToken(token)) {
+			        try {
+			           List<String>userNames=new ArrayList<String>();
+			           List<User> allUsers = userService.findAll();
+			           for(User user: allUsers) {
+			        	   if(user.isEnabled()==true) {
+			        		   userNames.add(user.getProfile().getName());
+			        	   }
+			           }
+			           System.out.println(userNames);
+			           responseEntity=new ResponseEntity<Object>(userNames,HttpStatus.OK);
+			        } catch (Exception e) {
+			            System.out.println(e);
+			            responseEntity=new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			        } catch (Error e) {
+			            System.out.println(e);
+			            responseEntity=new ResponseEntity<Object>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+			        }
+			 		}
+			 	System.out.println(responseEntity);
+			 	return responseEntity;
+
+			    }
 
 	
 }

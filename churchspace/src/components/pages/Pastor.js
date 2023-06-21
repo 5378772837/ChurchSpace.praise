@@ -205,7 +205,7 @@ useEffect(() => {
     };
   
     axios
-      .post('http://localhost:8080/Message/Pastor/updateMessage', updatedMessage, {
+      .post('http://localhost:8080/Message/User/updateMessage', updatedMessage, {
         headers: {
           Authorization: `Bearer ${props.user.token}`,
         },

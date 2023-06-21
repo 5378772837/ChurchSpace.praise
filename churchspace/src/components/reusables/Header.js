@@ -49,7 +49,7 @@ function Header(props) {
                         </a>
                     </div>
                     <div>
-                        <a href="/Messages">
+                        <a href="/MyMessages">
                             <div className='header-link'>MESSAGES</div>
                         </a>
                     </div>
@@ -58,157 +58,134 @@ function Header(props) {
                             <div className='header-link'>ADMIN</div>
                         </a>
                     </div>
-                    <a href="/"></a>
+                    <a href="/">
                     <div className='header-link' onClick={SignOut}>SIGN OUT</div>
+                    </a>
                 </div>
             )
         }else if (showPastor) {
 
             return (
                 <div className='fill flex-row'>
-                    <div className='third-width'>
+                    <div className='quarter-width'>
                         <a href="/"> <img className='logo' src="//images.squarespace-cdn.com/content/v1/5a2329482278e7efd892db43/62f6ea53-540e-4e86-bbf7-96e7d4763258/BIG-PNG-FILE-TRANSPARENT-BG.png?format=1500w" alt="Crossroads Church" /></a>
                     </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/">
-                            <div className='header-link'>HOME</div>
+                        <div className='header-link center'>HOME</div>
                         </a>
                     </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/ChurchBoard">
-                            <div className='header-link'>CHURCH BOARD</div>
+                        <div className='header-link center'>CHURCH BOARD</div>
                         </a>
                     </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/Bible">
-                            <div className='header-link'>BIBLE ASV</div>
+                        <div className='header-link center'>BIBLE ASV</div>
                         </a>
                     </div>
-                    <div>
-                        <a href="/MyProfile">
-                            <div className='header-link'>MY PROFILE</div>
+                    <div className='header-link'>
+                        <a href="/Profile">
+                        <div className='header-link center'>MY PROFILE</div>
                         </a>
                     </div>
-                    <div>
-                        <a href="/Messages">
-                            <div className='header-link'>MESSAGES</div>
+                    <div className='header-link'>
+                        <a href="/MyMessages">
+                        <div className='header-link center'>MESSAGES</div>
                         </a>
                     </div>
-                   <div>
-                        <a href="/Topics">
-                            <div className='header-link'>MY TOPICS</div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="/Posts">
-                            <div className='header-link'>MY POSTS</div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="/Comments">
-                            <div className='header-link'>MY COMMENTS</div>
-                        </a>
-                    </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/Pastor">
-                            <div className='header-link'>PASTOR PAGE</div>
+                        <div className='header-link center'>PASTOR PAGE</div>
                         </a>
                     </div>
-                    <a href="/"></a>
-                    <div className='header-link' onClick={SignOut}>SIGN OUT</div>
+                    <div className='header-link'>
+                    <a href="/">
+                    <div className='header-link center' onClick={SignOut}>SIGN OUT</div>
+                    </a>
+                    </div>
                 </div>
             )
          }else if (showMember) {
 
             return (
                 <div className='fill flex-row'>
-                    <div className='third-width'>
+                    <div className='quarter-width'>
                         <a href="/"> <img className='logo' src="//images.squarespace-cdn.com/content/v1/5a2329482278e7efd892db43/62f6ea53-540e-4e86-bbf7-96e7d4763258/BIG-PNG-FILE-TRANSPARENT-BG.png?format=1500w" alt="Crossroads Church" /></a>
                     </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/">
-                            <div className='header-link'>HOME</div>
+                            <div className='header-link center'>HOME</div>
                         </a>
                     </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/ChurchBoard">
-                            <div className='header-link'>CHURCH BOARD</div>
+                            <div className='header-link center'>CHURCH BOARD</div>
                         </a>
                     </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/Bible">
-                            <div className='header-link'>BIBLE ASV</div>
+                            <div className='header-link center'>BIBLE ASV</div>
                         </a>
                     </div>
-                    <div>
-                        <a href="/MyProfile">
-                            <div className='header-link'>MY PROFILE</div>
+                    <div className='header-link'>
+                        <a href="/Profile">
+                            <div className='header-link center'>MY PROFILE</div>
                         </a>
                     </div>
-                    <div>
-                        <a href="/Messages">
-                            <div className='header-link'>MESSAGES</div>
-                        </a>
-                    </div>
-                   <div>
-                        <a href="/Topics">
-                            <div className='header-link'>MY TOPICS</div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="/Posts">
-                            <div className='header-link'>MY POSTS</div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="/Comments">
-                            <div className='header-link'>MY COMMENTS</div>
+                    <div className='header-link'>
+                        <a href="/MyMessages">
+                            <div className='header-link center'>MESSAGES</div>
                         </a>
                     </div>
 
-                    <a href="/"></a>
-                    <div className='header-link' onClick={SignOut}>SIGN OUT</div>
+                    <div className='header-link'>
+                    <a href="/">
+                    <div className='header-link center' onClick={SignOut}>SIGN OUT</div>
+                    </a>
+                    </div>
                 </div>
             )
         }else {
             return (
                 <div className="fill flex-row">
-                    <div className=' flex-row third-width'>
+                    <div className=' flex-row quarter-width'>
                         <a href="/"> <img src="//images.squarespace-cdn.com/content/v1/5a2329482278e7efd892db43/62f6ea53-540e-4e86-bbf7-96e7d4763258/BIG-PNG-FILE-TRANSPARENT-BG.png?format=1500w" alt="Crossroads Church"></img></a>
                     </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/">
-                            <div className='header-link'>HOME</div>
+                            <div className='header-link center'>HOME</div>
                         </a>
                     </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/Bible">
-                            <div className='header-link'>BIBLE ASV</div>
+                            <div className='header-link center'>BIBLE ASV</div>
                         </a>
                     </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/SignIn">
-                            <div className='header-link'>SIGN-IN</div>
+                            <div className='header-link center'>SIGN-IN</div>
                         </a>
                     </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/SignUp">
-                            <div className='header-link'>SIGN-UP</div>
+                            <div className='header-link center'>SIGN-UP</div>
                         </a>
                     </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/MinistryLinks">
-                            <div className='header-link'>MINISTRY LINKS</div>
+                            <div className='header-link center'>LINKS</div>
                         </a>
                     </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/Give">
-                            <div className='header-link'>GIVE</div>
+                            <div className='header-link center'>GIVE</div>
                         </a>
                     </div>
-                    <div>
+                    <div className='header-link'>
                         <a href="/ContactUs">
-                            <div className='header-link'>CONTACT US</div>
+                            <div className='header-link center'>CONTACT US</div>
                         </a>
                     </div>
 

@@ -33,13 +33,14 @@
     width: 100%;
 }
 .header-link{
-    width:125px;
-    /* border: solid navy;
-    width: 100px;
-    border-radius: 5px; */
+
+    width: 150px;
+    border-radius: 5px;
     align-items: center;
     align-content: center;
     text-align: center;
-    color: white
+    color: white;
+    flex-shrink: 0;
+    margin:5px;
 
 }
