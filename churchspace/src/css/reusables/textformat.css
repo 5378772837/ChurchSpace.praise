@@ -26,6 +26,39 @@
     margin:3px;
 
 }
+
+.amount-input-box{
+    border-radius: 3px;
+    width: 200px;
+    height:35px;
+    margin:3px;
+
+}
+
+.card-input-box{
+    border-radius: 3px;
+    width: 400px;
+    height:35px;
+    margin:3px;
+
+}
+
+.name-input-box{
+    border-radius: 3px;
+    width: 400px;
+    height:35px;
+    margin:3px;
+
+}
+
+.flex-row-card{
+    height:10%;
+    width:100%;
+    align-content: center;
+    justify-content: center;
+
+}
+
 .button{
     width: 150px;
     height: 30px;
@@ -68,6 +101,17 @@ box-shadow: 0 12px 16px 0 white,0 17px 50px 0 grey;
     border-radius: 8px;
     width: 800px;
     height: 700px;
+    background-color: navy;
+    margin:3px;
+    flex-direction: column;
+    outline: solid silver;
+
+}
+
+.give-box{
+    border-radius: 8px;
+    width: 700px;
+    height: 500px;
     background-color: navy;
     margin:3px;
     flex-direction: column;

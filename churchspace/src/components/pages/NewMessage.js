@@ -72,14 +72,14 @@ function NewMessage(props)  {
                 </select>
             </div>
 
-            <div className='flex-row center'>
+            <div className='flex-row medium center'>
               <label>Subject:</label>
             </div>
             <div className='flex-row center'>
               <input className='message-subject' type="text" value={subject} onChange={(e) => setSubject(e.target.value)} />
             </div>
 
-            <div className='flex-row center'>
+            <div className='flex-row medium center'>
               <label>Message:</label>
               </div>
               <div className='flex-row center'>

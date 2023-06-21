@@ -58,6 +58,16 @@ function Header(props) {
                             <div className='header-link'>ADMIN</div>
                         </a>
                     </div>
+                    <div className='header-link'>
+                        <a href="/Links">
+                            <div className='header-link center'>LINKS</div>
+                        </a>
+                    </div>
+                    <div className='header-link'>
+                        <a href="/Give">
+                            <div className='header-link center'>GIVE</div>
+                        </a>
+                    </div>
                     <a href="/">
                     <div className='header-link' onClick={SignOut}>SIGN OUT</div>
                     </a>
@@ -101,6 +111,16 @@ function Header(props) {
                         </a>
                     </div>
                     <div className='header-link'>
+                        <a href="/Links">
+                            <div className='header-link center'>LINKS</div>
+                        </a>
+                    </div>
+                    <div className='header-link'>
+                        <a href="/Give">
+                            <div className='header-link center'>GIVE</div>
+                        </a>
+                    </div>
+                    <div className='header-link'>
                     <a href="/">
                     <div className='header-link center' onClick={SignOut}>SIGN OUT</div>
                     </a>
@@ -139,7 +159,16 @@ function Header(props) {
                             <div className='header-link center'>MESSAGES</div>
                         </a>
                     </div>
-
+                    <div className='header-link'>
+                        <a href="/Links">
+                            <div className='header-link center'>LINKS</div>
+                        </a>
+                    </div>
+                    <div className='header-link'>
+                        <a href="/Give">
+                            <div className='header-link center'>GIVE</div>
+                        </a>
+                    </div>
                     <div className='header-link'>
                     <a href="/">
                     <div className='header-link center' onClick={SignOut}>SIGN OUT</div>
@@ -174,7 +203,7 @@ function Header(props) {
                         </a>
                     </div>
                     <div className='header-link'>
-                        <a href="/MinistryLinks">
+                        <a href="/Links">
                             <div className='header-link center'>LINKS</div>
                         </a>
                     </div>

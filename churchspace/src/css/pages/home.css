@@ -25,20 +25,20 @@
     border:solid navy ;
     background-color: white;
     margin: auto;
-    height: 30%;
-    width: 50%;
+    height: 600px;
+    width: 900px;
     border-radius: 30px;
     
 }
 .message-col{
     display:flex;
     flex-direction: column;
-    height:15%;
+    height:10%;
     width: 100%;
 }
 .body-row{
     display:flex;
-    height:85%;
+    height:50%;
     width: 100%;
 }
 
