@@ -93,7 +93,7 @@ useEffect(() => {
       })
       .then((response) => {
         console.log(response.data); // Check the response data
-        // Perform any necessary updates based on the response
+        setSubjects(response.data);
       })
       .catch((error) => {
         console.error(error); // Log and handle any errors
@@ -115,14 +115,12 @@ useEffect(() => {
         },
       })
       .then((response) => {
-        console.log(response.data); // Check the response data
-        // Perform any necessary updates based on the response
+        setSubjects(response.data);
       })
       .catch((error) => {
         console.error(error); // Log and handle any errors
       });
   };
-
 
 
 
@@ -142,7 +140,7 @@ useEffect(() => {
       })
       .then((response) => {
         console.log(response.data); // Check the response data
-        // Perform any necessary updates based on the response
+        
       })
       .catch((error) => {
         console.error(error); // Log and handle any errors
@@ -165,7 +163,7 @@ useEffect(() => {
       })
       .then((response) => {
         console.log(response.data); // Check the response data
-        // Perform any necessary updates based on the response
+      
       })
       .catch((error) => {
         console.error(error); // Log and handle any errors
@@ -189,7 +187,7 @@ useEffect(() => {
       })
       .then((response) => {
         console.log(response.data); // Check the response data
-        // Perform any necessary updates based on the response
+  
       })
       .catch((error) => {
         console.error(error); // Log and handle any errors
@@ -212,7 +210,7 @@ useEffect(() => {
       })
       .then((response) => {
         console.log(response.data); // Check the response data
-        // Perform any necessary updates based on the response
+    
       })
       .catch((error) => {
         console.error(error); // Log and handle any errors
@@ -525,7 +523,7 @@ const findMessages = (event) => {
                     <a className="large">Search For Subjects</a>
                     </div>
                     <div className="flex-row">
-                    <input className='sidebar-input-container2'  name='subject' type='subject' onChange={handleSubjectSearchChange} required></input>
+                    <input className='sidebar-input-container2'  name='subject' type='text' onChange={handleSubjectSearchChange} required></input>
                     </div>
                     <div className="flex-row">
                     <button className="button2" onClick={findSubjects}>FIND SUBJECT BY KEYWORD</button>
@@ -534,7 +532,7 @@ const findMessages = (event) => {
                     <a className="large">Search For Topics</a>
                     </div>
                     <div className="flex-row ">
-                    <input className='sidebar-input-container2'  name='blog' type='blog' onChange={handleTopicsSearchChange} required></input>
+                    <input className='sidebar-input-container2'  name='blog' type='text' onChange={handleTopicsSearchChange} required></input>
                     </div>
                     <div className="flex-row ">
                     <button className="button2" onClick={findTopics}>FIND TOPIC BY KEYWORD</button>
@@ -543,7 +541,7 @@ const findMessages = (event) => {
                     <a className="large">Search For Posts</a>
                     </div>
                     <div className="flex-row ">
-                    <input className='sidebar-input-container2'  name='post' type='post' onChange={handlePostsSearchChange} required></input>
+                    <input className='sidebar-input-container2'  name='post' type='text' onChange={handlePostsSearchChange} required></input>
                     </div>
                     <div className="flex-row ">
                     <button className="button2" onClick={findPosts}>FIND POST BY KEYWORD</button>
@@ -552,7 +550,7 @@ const findMessages = (event) => {
                     <a className="large">Search For Comments</a>
                     </div>
                     <div className="flex-row ">
-                    <input className='sidebar-input-container2'  name='comment' type='comment' onChange={handleCommentsSearchChange} required></input>
+                    <input className='sidebar-input-container2'  name='comment' type='text' onChange={handleCommentsSearchChange} required></input>
                     </div>
                     <div className="flex-row ">
                     <button className="button2" onClick={findComments}>FIND COMMENT BY KEYWORD</button>

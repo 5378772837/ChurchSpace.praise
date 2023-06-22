@@ -91,10 +91,9 @@ public class SubjectController {
 		    consumes = MediaType.APPLICATION_JSON_VALUE,
 		    method = RequestMethod.POST
 		)
-		public void updateSubject(@RequestHeader(value = "Authorization") String token, @RequestBody Subject subject) {
+		public List<Subject> updateSubject(@RequestHeader(value = "Authorization") String token, @RequestBody Subject subject) {
 			
 			token = token.substring(7).trim();
-		    
 		    if (jwtUtil.validateJwtToken(token)) {
 		        try {
 		            subjectService.update(subject);
@@ -104,7 +103,7 @@ public class SubjectController {
 		            System.out.println(e);
 		        }
 		    }
-		    
+		    return subjectService.findActive();
 			}
 	
 

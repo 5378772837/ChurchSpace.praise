@@ -116,5 +116,9 @@ height:100%;
     width:100%;
     outline: solid siver;
     flex-wrap: wrap;
-    overflow:auto;
+    /* overflow:auto; */
+    scroll-behavior: auto;
+    flex-grow: 1;
+
+    
 }

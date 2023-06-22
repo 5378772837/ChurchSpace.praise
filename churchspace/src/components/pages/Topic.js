@@ -8,6 +8,7 @@ import '../../css/pages/topic.css'
 function Topic (props)  {
   const location = useLocation();
   const { topic } = location.state;
+  const [thisTopic,setThisTopic] = useState(topic)
   const [newPost, setNewPost] = useState({id:"",post:"",topicID:topic.id,active:true});
   const [posts, setPosts]= useState([]);
   const [selectedPostId, setSelectedPostId] = useState(null);
@@ -43,10 +44,8 @@ function Topic (props)  {
 
 
 useEffect(() => {
-  console.log("Topic")
-  console.log(topic)
     if (props.user && props.user.token) {
-      axios.get(`http://localhost:8080/Post/User/findActiveByTopicId/${topic.id}`, {
+      axios.get(`http://localhost:8080/Post/User/findActiveByTopicId/${thisTopic.id}`, {
         headers: {
           Authorization: `Bearer ${props.user.token}`,
         },
@@ -70,7 +69,7 @@ useEffect(() => {
     const updatedPost = { ...newPost };
     updatedPost.creatorName = props.user.name;
     updatedPost.active = true;
-    updatedPost.topicID = topic.id;
+    updatedPost.topicID = thisTopic.id;
 
     console.log(updatedPost);
 
@@ -147,8 +146,8 @@ useEffect(() => {
 
       return (
         <div className="flex-col fill">
-          <div className="flex-row subject-header justify-content-center">
-            <h1>Topic: {topic.topicTitle} {topic.topicBlog}</h1>
+          <div className="flex-row topic-header2 justify-content-center">
+            <h1>Topic: {thisTopic.topicTitle} {thisTopic.topicBlog}</h1>
           </div>
           <div className="post-header center">
             <a className="large navy">Create New Post:</a>
@@ -165,14 +164,14 @@ useEffect(() => {
                 <div className="post-box" key={id} onClick={(event) => handlePostClick(event, postInst)}>
                   <div className="post-flex-col">
                     <div className="flex-row">
-                      <div className="sub-info-col">
+                      <div className="top-info-col">
                         <div className="flex-row large"> ID: {postInst.id}</div>
                         <div className="flex-row"> Date: {postInst.postDate}</div>
                         <div className="flex-row">
                           Creator Name: {postInst.creatorName}
                         </div>
                       </div>
-                      <div className="sub-blog-col">
+                      <div className="top-blog-col">
                         <div className="flex-row medium flex-wrap"> Post: {postInst.post}</div>
                       </div>
                     </div>
