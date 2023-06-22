@@ -2,7 +2,7 @@
 This project is under construction. The features are complete. I am working on Styling and CSS. I am also going to build more site administration pages to allow the Admin to build links, and change the images displayed on their home page slide show. Anyone that wants to use this for their church can. If you have suggestions, requests, or improvements let me know. Thank you!
 
 
-If you choose to run it, you will need to set up MySQL accordingly.
+If you choose to run it, you will need to set up MySQL accordingly. Additionally you will need to set up a different security key, and get your own API Authorization code from the American Bible Society. If you need help, contact me.
 
 # ChurchSpace.praise
 Church Space Site has Subjects, Topics, Posts, Comments, Messages, Links, and allows visitors to read the Bible.
