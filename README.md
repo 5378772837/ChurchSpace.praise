@@ -1,9 +1,11 @@
 # Under Construction
-This project is under construction. The below features are my mission statement for the project.
+This project is under construction. The features are complete. I am working on Styling and CSS. I am also going to build more site administration pages to allow the Admin to build links, and change the images displayed on their home page slide show. Anyone that wants to use this for their church can. If you have suggestions, requests, or improvements let me know. Thank you!
+
+
 If you choose to run it, you will need to set up MySQL accordingly.
 
 # ChurchSpace.praise
-Church Space Site allows Subjects, Topics, Posts, Comments, Messages, and read the Bible.
+Church Space Site has Subjects, Topics, Posts, Comments, Messages, Links, and allows visitors to read the Bible.
 
 # Administrators
 Administrators can 
@@ -21,7 +23,7 @@ Edit and disable all Subjects, Topics, Posts, or Comments.
 Send messages, create Topics, and make Posts and Comments.
 
 # Everyone
-Can visit the site and read the Bible.
+Can visit the site and read the Bible, and can view links.
 
 # Credits
 I would like to thank the American Bible Society for allowing me to connect their bible API. Most of all I thank Jesus for the opportunity to serve Him!
