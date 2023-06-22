@@ -65,16 +65,17 @@ public class WebSecurityConfig {
           auth.antMatchers("/**").permitAll()
           	  .antMatchers("/api/auth/SignUp/**").permitAll()
           	  .antMatchers("/api/auth/SignIn/**").permitAll()
+          	  .antMatchers("/user/**").authenticated()
+        	  .antMatchers("**/User/**").authenticated()
+        	  .antMatchers("/User/**").authenticated()
 //          	  .antMatchers("/user/**").permitAll()
-//          	  .antMatchers("/Users/**").permitAll()
-//          	  .antMatchers("/User/**").permitAll()
-//   
-          	  .antMatchers("**/Church/**").hasRole("PASTOR") 
-          	  .antMatchers("**/Pastor/**").hasRole("PASTOR")
+//        	  .antMatchers("**/User/**").permitAll()
+//        	  .antMatchers("/User/**").permitAll()
+        	  .antMatchers("**/Church/**").hasRole("PASTOR")      
           	  .antMatchers("/Pastor/**").hasRole("PASTOR")          	  
           	  .antMatchers("**/Admin/**").hasRole("ADMIN")
-//              .antMatchers("/api/test/**").permitAll()
-//              .anyRequest().authenticated()
+          	  .antMatchers("/api/test/**").permitAll()
+
         );
     
     http.authenticationProvider(authenticationProvider());

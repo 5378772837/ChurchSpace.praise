@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../../css/pages/bible.css'
 
 function Bible() {
   const [books, setBooks] = useState([]);
@@ -222,7 +223,7 @@ function Bible() {
       setLoading(true);
 
       const response = await fetch(
-        `https://api.scripture.api.bible/v1/bibles/${VERSION}/search?query=${searchText}&limit=10&sort=relevance&fuzziness=AUTO`,
+        `https://api.scripture.api.bible/v1/bibles/${VERSION}/search?query=${searchText}&limit=100&sort=relevance&fuzziness=AUTO`,
         {
           headers: {
             'api-key': API_KEY,
@@ -246,10 +247,10 @@ function Bible() {
 
   return (
     <div className="flex-col fill">
-      <div className="flex-row thin-border">
+      <div className="flex-row-bible-header">
       <h1 className="flex-col quarter-width">Scripture Search</h1>
 
-        <div className="flex-row two-third-width center">
+        <div className="flex-row half-width center">
         <div className="flex-row quarter-width center">
           <label htmlFor="book">Book:</label>
           <select id="book" value={selectedBook} onChange={handleBookChange}>
@@ -309,15 +310,15 @@ function Bible() {
       </div>
 
       </div>
-      <div className="flex-col fill scroll">
+      <div className="flex-col">
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <div className='flex-col fill'>
+          <div className='flex-col fill scroll'>
             {searchResults.map((result) => (
-              <div className="flex-row fill" key={result.id}>
-                <h3 className="flex-col quarter-width">{result.reference}</h3>
-                <p className="flex-col fill">{result.text}</p>
+              <div className="flex-row" key={result.id}>
+                <h3 className="flex-col width15 top-center">{result.reference}</h3>
+                <p className="flex-col three-quarter-width">{result.text}</p>
               </div>
             ))}
           </div>

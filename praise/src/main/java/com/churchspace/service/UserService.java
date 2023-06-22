@@ -46,6 +46,10 @@ public List<User> findByEmail(String email) {
 	return userRepo.findByEmail(email);
 }
 
+public User findMeByEmail(String email) {
+	return userRepo.findMeByEmail(email);
+}
+
 public User findByUsername (String userName)throws UsernameNotFoundException{
 	User user = userRepo.findByUsername(userName).orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + userName));
 	return user;

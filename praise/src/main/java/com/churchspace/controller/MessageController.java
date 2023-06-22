@@ -1,9 +1,6 @@
 package com.churchspace.controller;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,19 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.churchspace.entity.Role;
-import com.churchspace.entity.Subject;
-import com.churchspace.entity.User;
+import com.churchspace.entity.Message;
 import com.churchspace.security.jwt.JwtUtils;
-import com.churchspace.service.SubjectService;
+import com.churchspace.service.MessageService;
 
 @RestController
-@RequestMapping(value="/Subject")
+@RequestMapping(value="/Message")
 @CrossOrigin("*")
-public class SubjectController {
+public class MessageController {
+	
+	
 	
 	@Autowired
-	SubjectService subjectService;
+	MessageService messageService;
 	
 	@Autowired
 	JwtUtils jwtUtil;
@@ -46,8 +43,8 @@ public class SubjectController {
 	 	ResponseEntity <Object> responseEntity = null;
 	 	if (jwtUtil.validateJwtToken(token)) {
 	        try {
-	           List<Subject> activeSubjects = subjectService.findActive();
-	           responseEntity=new ResponseEntity<Object>(activeSubjects,HttpStatus.OK);
+	           List<Message> activeMessages = messageService.findActive();
+	           responseEntity=new ResponseEntity<Object>(activeMessages,HttpStatus.OK);
 	        } catch (Exception e) {
 	            System.out.println(e);
 	            responseEntity=new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -62,19 +59,19 @@ public class SubjectController {
 	    }
 	
 	@RequestMapping(
-	        value="/Pastor/findSubject/{text}",
+	        value="/Pastor/findMessage/{text}",
 	        produces = MediaType.APPLICATION_JSON_VALUE,
 	        method = RequestMethod.GET
 	    )
-	    public ResponseEntity<Object> findSubject(@RequestHeader(value = "Authorization") String token,@PathVariable String text) {
+	    public ResponseEntity<Object> findMessage(@RequestHeader(value = "Authorization") String token,@PathVariable String text) {
 			
 			token=token.substring(7).trim();
 			ResponseEntity <Object> responseEntity = null;
 			
 		 	if (jwtUtil.validateJwtToken(token)) {
 		 	try {
-		 		List<Subject> foundSubjects = subjectService.findSubjectBySubject("%"+text+"%");
-	            responseEntity = new ResponseEntity<Object>(foundSubjects, HttpStatus.OK);
+		 		List<Message> foundMessages = messageService.findMessageByMessage("%"+text+"%");
+	            responseEntity = new ResponseEntity<Object>(foundMessages, HttpStatus.OK);
 	        } catch (Exception e) {
 	            System.out.println(e);
 	            responseEntity=new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -87,64 +84,61 @@ public class SubjectController {
 		 }
 	
 	@RequestMapping(
-		    value = "/Pastor/updateSubject",
+		    value = "/User/updateMessage",
 		    consumes = MediaType.APPLICATION_JSON_VALUE,
 		    method = RequestMethod.POST
 		)
-		public List<Subject> updateSubject(@RequestHeader(value = "Authorization") String token, @RequestBody Subject subject) {
+		public void updateMessage(@RequestHeader(value = "Authorization") String token, @RequestBody Message Message) {
 			
 			token = token.substring(7).trim();
+		    
 		    if (jwtUtil.validateJwtToken(token)) {
 		        try {
-		            subjectService.update(subject);
+		            messageService.update(Message);
 		        } catch (Exception e) {
 		            System.out.println(e);
 		        } catch (Error e) {
 		            System.out.println(e);
 		        }
 		    }
-		    return subjectService.findActive();
+		    
 			}
 	
 
 	@RequestMapping(
-		    value = "/Pastor/addSubject",
+		    value = "/User/addMessage",
 		    consumes = MediaType.APPLICATION_JSON_VALUE,
 		    method = RequestMethod.POST
 		)
-		public ResponseEntity<Object> saveSubject(@RequestHeader(value = "Authorization") String token, @RequestBody Subject subject) {
+		public void addMessage(@RequestHeader(value = "Authorization") String token, @RequestBody Message Message) {
 			
 			token = token.substring(7).trim();
-		 	ResponseEntity <Object> responseEntity = null;
+		    
 		    if (jwtUtil.validateJwtToken(token)) {
 		        try {
-		            subjectService.save(subject);
-		            List<Subject> activeSubjects = subjectService.findActive();
-			        responseEntity=new ResponseEntity<Object>(activeSubjects,HttpStatus.OK);
+		            messageService.save(Message);
 		        } catch (Exception e) {
 		            System.out.println(e);
-		            responseEntity=new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		        } catch (Error e) {
 		            System.out.println(e);
-		            responseEntity=new ResponseEntity<Object>(e, HttpStatus.INTERNAL_SERVER_ERROR);
 		        }
 		    }
-		    return responseEntity;
+		    
 			}
 	
 	@RequestMapping(
-	        value="/User/findActive",
+	        value="/User/findMyMessages/{recipientName}",
 	        produces = MediaType.APPLICATION_JSON_VALUE,
 	        method = RequestMethod.GET
 	    )
-	 public ResponseEntity<Object> findActiveForUser(@RequestHeader(value = "Authorization") String token) {
+	 public ResponseEntity<Object> findActiveForUser(@RequestHeader(value = "Authorization") String token, @PathVariable String recipientName) {
 	 	
 	 	token=token.substring(7).trim();
 	 	ResponseEntity <Object> responseEntity = null;
 	 	if (jwtUtil.validateJwtToken(token)) {
 	        try {
-	           List<Subject> activeSubjects = subjectService.findActive();
-	           responseEntity=new ResponseEntity<Object>(activeSubjects,HttpStatus.OK);
+	           List<Message> activeMessages = messageService.findActiveForUser(recipientName);
+	           responseEntity=new ResponseEntity<Object>(activeMessages,HttpStatus.OK);
 	        } catch (Exception e) {
 	            System.out.println(e);
 	            responseEntity=new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -153,10 +147,11 @@ public class SubjectController {
 	            responseEntity=new ResponseEntity<Object>(e, HttpStatus.INTERNAL_SERVER_ERROR);
 	        }
 	 		}
-
+	 	System.out.println(responseEntity);
 	 	return responseEntity;
 
 	    }
+	
 	
 
 }

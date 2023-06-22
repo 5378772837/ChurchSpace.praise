@@ -2,6 +2,12 @@
     justify-content: center;
     align-items: center;
 }
+
+.top-center{
+    align-items: center;
+    
+}
+
 .right{
     justify-content: right;
     align-items: right;

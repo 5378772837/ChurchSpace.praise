@@ -1,0 +1,140 @@
+.topic-header2{
+    height:10%;
+    width:99.5%;
+    flex-grow: 0;
+    flex-shrink:0 ;
+    background-color: lightskyblue;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    outline: solid white;
+    border-radius: 8px;
+    margin:5px;
+}
+
+.post-header{
+    height:15%;
+    width:99.5%;
+    outline: solid silver;
+    background-color: grey;
+    border-radius: 5px;
+    margin:5px;
+
+}
+.post-body{
+  
+    width:100%;
+
+    flex-wrap: wrap;
+    overflow:none;
+    background-color: rgb(28, 20, 77);
+    flex-grow:1;
+}
+
+.top-box{
+    height: 100px;
+    width: 10%;
+    display:flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* background-color: white; */
+    background-color:silver;
+    border-radius: 8px;
+    border:solid navy;
+}
+
+.top-info-col{
+    height: 100px;
+    width: 10%;
+    display:flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* background-color: white; */
+    background-color:silver;
+    border-radius: 8px;
+    border:solid navy;
+}
+
+.top-blog-col{
+    height:100px;
+    width:98%;
+    display:flex;
+    flex-direction: column;
+    border-radius: 8px;
+    border:solid navy;
+    background-color: white;
+
+}
+
+.post-box{
+    border-radius: 8px;
+    display: flex;
+    border-radius: 8px;
+    width: 98%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    color:navy;
+    margin: 10px;
+    box-shadow: 10px 10px 10px grey;
+ 
+}
+
+.post-flex-col{
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-direction: column;
+}
+
+.comment-info-col{
+    min-height: 50px;
+    width:15%;
+    display:flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: yellow;
+    /* background-color: white; */
+    color: navy;
+    border-radius: 8px;
+    border:solid navy;
+    flex-shrink: 0;
+}
+
+.comment-blog-col{
+    height:50px;
+    width:80%;
+    display:flex;
+    flex-direction: column;
+
+    flex-shrink: 0;
+    border-radius: 8px;
+    border:solid navy;
+    background-color: whitesmoke;
+
+}
+
+.comments-flex-col{
+    flex-direction: column;
+    background-color: navy;
+    border-radius: 5px;
+    margin:3px;
+
+}
+
+.cw-flex-row{
+    flex-direction: row;
+    min-height: 50px;
+    outline: solid navy;
+    border-radius: 5px;
+    background-color: lightyellow;
+
+}
+
+.ce-flex-row{
+    flex-direction: row;
+    outline: solid navy;
+    border-radius: 5px;
+    background-color: lightskyblue;
+    margin:5px;
+}

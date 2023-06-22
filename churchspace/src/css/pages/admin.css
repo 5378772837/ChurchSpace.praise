@@ -15,12 +15,13 @@ justify-content:left;
 align-items:center;
 color: whitesmoke;
 background-color: navy;
-border:solid silver
+outline:solid silver
 }
 
 .user-disp-col{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     width: 70%;
     scroll-behavior: smooth;
 
