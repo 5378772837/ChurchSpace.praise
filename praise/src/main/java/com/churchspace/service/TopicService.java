@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.churchspace.entity.Subject;
 import com.churchspace.entity.Topic;
 import com.churchspace.repo.TopicRepo;
 

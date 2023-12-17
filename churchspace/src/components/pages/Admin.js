@@ -86,6 +86,7 @@ const findAllUsers = () => {
     return (
             <div className= 'fill'>
             <div className='admin-sidebar justify-content-center'>
+              
                     <h3>Hello Administrator</h3>
                     <h2>Edit Users Here</h2>
                     SEARCH FOR A USER BY EMAIL
@@ -94,11 +95,12 @@ const findAllUsers = () => {
                     <h2>EDIT USERS</h2>
                     <h3>FIND ALL</h3>
                     <button className="button2" onClick={findAllUsers}>FIND ALL USERS</button>
+                    
             </div>
-            <div className = 'user-disp-col flex-wrap scroll'>
-              
+            <div className = 'user-disp-col flex-wrap'>
+              <div className = 'scroll'>
                 {showUsers()}
-                
+                </div>
                 </div>
             </div>         
  

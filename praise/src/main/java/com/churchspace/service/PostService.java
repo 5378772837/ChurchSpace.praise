@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.churchspace.entity.Post;
-import com.churchspace.entity.Subject;
 import com.churchspace.repo.PostRepo;
 
 @Service

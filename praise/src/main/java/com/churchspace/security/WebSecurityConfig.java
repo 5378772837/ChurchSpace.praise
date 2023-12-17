@@ -13,8 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import com.churchspace.entity.ERole;
 import com.churchspace.security.jwt.AuthEntryPointJwt;
 import com.churchspace.security.jwt.AuthTokenFilter;
 import com.churchspace.security.services.UserDetailsServiceImpl;
@@ -72,7 +70,8 @@ public class WebSecurityConfig {
 //        	  .antMatchers("**/User/**").permitAll()
 //        	  .antMatchers("/User/**").permitAll()
         	  .antMatchers("**/Church/**").hasRole("PASTOR")      
-          	  .antMatchers("/Pastor/**").hasRole("PASTOR")          	  
+          	  .antMatchers("/Pastor/**").hasRole("PASTOR")
+          	  .antMatchers("/Pastor/**").hasRole("ADMIN")
           	  .antMatchers("**/Admin/**").hasRole("ADMIN")
           	  .antMatchers("/api/test/**").permitAll()
 

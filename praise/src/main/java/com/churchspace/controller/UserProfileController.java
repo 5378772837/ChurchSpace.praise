@@ -1,7 +1,5 @@
 package com.churchspace.controller;
 
-import javax.management.relation.Role;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,11 +12,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.churchspace.entity.ERole;
 import com.churchspace.entity.UserProfile;
 import com.churchspace.security.jwt.JwtUtils;
-import com.churchspace.service.RoleService;
 import com.churchspace.service.UserProfileService;
 import com.churchspace.service.UserService;
 

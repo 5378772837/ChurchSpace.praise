@@ -24,7 +24,7 @@
 .post-body{
   
     width:100%;
-
+    flex-direction: column;
     flex-wrap: wrap;
     overflow:none;
     background-color: rgb(28, 20, 77);

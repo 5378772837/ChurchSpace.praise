@@ -38,6 +38,11 @@ function Header(props) {
                     <div className='third-width'>
                         <a href="/"> <img className='logo' src="//images.squarespace-cdn.com/content/v1/5a2329482278e7efd892db43/62f6ea53-540e-4e86-bbf7-96e7d4763258/BIG-PNG-FILE-TRANSPARENT-BG.png?format=1500w" alt="Crossroads Church" /></a>
                     </div>
+                    <div className='header-link'>
+                        <a href="/SiteSetUp">
+                        <div className='header-link center'>SiteSetUp</div>
+                        </a>
+                    </div>
                     <div>
                         <a href="/">
                             <div className='header-link'>HOME</div>
@@ -83,6 +88,11 @@ function Header(props) {
                     <div className='header-link'>
                         <a href="/">
                         <div className='header-link center'>HOME</div>
+                        </a>
+                    </div>
+                    <div className='header-link'>
+                        <a href="/SiteSetUp">
+                        <div className='header-link center'>SiteSetUp</div>
                         </a>
                     </div>
                     <div className='header-link'>
