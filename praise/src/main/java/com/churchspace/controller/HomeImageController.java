@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.churchspace.entity.HomeImage;
-import com.churchspace.entity.Subject;
 import com.churchspace.security.jwt.JwtUtils;
 import com.churchspace.service.HomeImageService;
 
@@ -31,19 +29,71 @@ public class HomeImageController {
 	HomeImageService homeImageService;
 	
 	@RequestMapping(
-			value="/Pastor/save",
+			value="/Pastor/SaveHeader",
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 	        produces = MediaType.APPLICATION_JSON_VALUE,
 	        method = RequestMethod.GET
 			)
-	public ResponseEntity<Object> saveImage(@RequestHeader(value = "Authorization") String token, @RequestBody HomeImage image) {
+	public ResponseEntity<Object> saveHeader(@RequestHeader(value = "Authorization") String token, @RequestBody HomeImage image) {
 		
 		token = token.substring(7).trim();
 	 	ResponseEntity <Object> responseEntity = null;
 	    if (jwtUtil.validateJwtToken(token)) {
 	        try {
 	            homeImageService.save(image);
-	            List<HomeImage> activeHomeImages = homeImageService.findActive();
+	            List<HomeImage> activeHomeImages = homeImageService.findHeader();
+		        responseEntity=new ResponseEntity<Object>(activeHomeImages,HttpStatus.OK);
+	        } catch (Exception e) {
+	            System.out.println(e);
+	            responseEntity=new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+	        } catch (Error e) {
+	            System.out.println(e);
+	            responseEntity=new ResponseEntity<Object>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+	        }
+	    }
+	    return responseEntity;
+		}
+	
+	@RequestMapping(
+			value="/Pastor/SaveBackground",
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+	        produces = MediaType.APPLICATION_JSON_VALUE,
+	        method = RequestMethod.GET
+			)
+	public ResponseEntity<Object> saveBackground(@RequestHeader(value = "Authorization") String token, @RequestBody HomeImage image) {
+		
+		token = token.substring(7).trim();
+	 	ResponseEntity <Object> responseEntity = null;
+	    if (jwtUtil.validateJwtToken(token)) {
+	        try {
+	            homeImageService.save(image);
+	            List<HomeImage> activeHomeImages = homeImageService.findHeader();
+		        responseEntity=new ResponseEntity<Object>(activeHomeImages,HttpStatus.OK);
+	        } catch (Exception e) {
+	            System.out.println(e);
+	            responseEntity=new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+	        } catch (Error e) {
+	            System.out.println(e);
+	            responseEntity=new ResponseEntity<Object>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+	        }
+	    }
+	    return responseEntity;
+		}
+	
+	@RequestMapping(
+			value="/Pastor/SaveSlide",
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+	        produces = MediaType.APPLICATION_JSON_VALUE,
+	        method = RequestMethod.GET
+			)
+	public ResponseEntity<Object> saveSlide(@RequestHeader(value = "Authorization") String token, @RequestBody HomeImage image) {
+		
+		token = token.substring(7).trim();
+	 	ResponseEntity <Object> responseEntity = null;
+	    if (jwtUtil.validateJwtToken(token)) {
+	        try {
+	            homeImageService.save(image);
+	            List<HomeImage> activeHomeImages = homeImageService.findActiveSlides();
 		        responseEntity=new ResponseEntity<Object>(activeHomeImages,HttpStatus.OK);
 	        } catch (Exception e) {
 	            System.out.println(e);
@@ -59,7 +109,7 @@ public class HomeImageController {
 	
 	
 	@RequestMapping(
-			value="/FindActive",
+			value="/FindActiveSlides",
 	        produces = MediaType.APPLICATION_JSON_VALUE,
 	        method = RequestMethod.GET
 			)
@@ -68,7 +118,7 @@ public class HomeImageController {
 	 	ResponseEntity <Object> responseEntity = null;
 
 	        try {
-	            List<HomeImage> activeHomeImages = homeImageService.findActive();
+	            List<HomeImage> activeHomeImages = homeImageService.findActiveSlides();
 		        responseEntity=new ResponseEntity<Object>(activeHomeImages,HttpStatus.OK);
 	        } catch (Exception e) {
 	            System.out.println(e);
@@ -82,17 +132,17 @@ public class HomeImageController {
 		}
 	
 	@RequestMapping(
-			value="/Pastor/FindAll",
+			value="/Pastor/FindAllSlides",
 	        produces = MediaType.APPLICATION_JSON_VALUE,
 	        method = RequestMethod.GET
 			)
-	public ResponseEntity<Object> findAll(@RequestHeader(value = "Authorization") String token) {
+	public ResponseEntity<Object> findAllSlides(@RequestHeader(value = "Authorization") String token) {
 		token = token.substring(7).trim();
 	 	ResponseEntity <Object> responseEntity = null;
 	    if (jwtUtil.validateJwtToken(token)) {
 
 	        try {
-	            List<HomeImage> allHomeImages = homeImageService.findAll();
+	            List<HomeImage> allHomeImages = homeImageService.findAllSlides();
 		        responseEntity=new ResponseEntity<Object>(allHomeImages,HttpStatus.OK);
 	        } catch (Exception e) {
 	            System.out.println(e);
@@ -106,11 +156,35 @@ public class HomeImageController {
 		}
 	
 	@RequestMapping(
-		    value = "/Pastor/updateHomeImage",
+			value="/Pastor/FindBackground",
+	        produces = MediaType.APPLICATION_JSON_VALUE,
+	        method = RequestMethod.GET
+			)
+	public ResponseEntity<Object> findBackground(@RequestHeader(value = "Authorization") String token) {
+		token = token.substring(7).trim();
+	 	ResponseEntity <Object> responseEntity = null;
+	    if (jwtUtil.validateJwtToken(token)) {
+
+	        try {
+	            List<HomeImage> backgrounds = homeImageService.findBackground();
+		        responseEntity=new ResponseEntity<Object>(backgrounds,HttpStatus.OK);
+	        } catch (Exception e) {
+	            System.out.println(e);
+	            responseEntity=new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+	        } catch (Error e) {
+	            System.out.println(e);
+	            responseEntity=new ResponseEntity<Object>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+	        }
+	    }
+	    return responseEntity;
+		}
+	
+	@RequestMapping(
+		    value = "/Pastor/UpdateBackground",
 		    consumes = MediaType.APPLICATION_JSON_VALUE,
 		    method = RequestMethod.POST
 		)
-		public List<HomeImage> updateHomeImage(@RequestHeader(value = "Authorization") String token, @RequestBody HomeImage photo) {
+		public List<HomeImage> updateBackground(@RequestHeader(value = "Authorization") String token, @RequestBody HomeImage photo) {
 			
 			token = token.substring(7).trim();
 		    if (jwtUtil.validateJwtToken(token)) {
@@ -122,11 +196,30 @@ public class HomeImageController {
 		            System.out.println(e);
 		        }
 		    }
-		    return homeImageService.findActive();
+		    return homeImageService.findBackground();
+			}
+	
+	@RequestMapping(
+		    value = "/Pastor/updateHeader",
+		    consumes = MediaType.APPLICATION_JSON_VALUE,
+		    method = RequestMethod.POST
+		)
+		public List<HomeImage> updateHeader(@RequestHeader(value = "Authorization") String token, @RequestBody HomeImage photo) {
+			
+			token = token.substring(7).trim();
+		    if (jwtUtil.validateJwtToken(token)) {
+		        try {
+		            homeImageService.update(photo);
+		        } catch (Exception e) {
+		            System.out.println(e);
+		        } catch (Error e) {
+		            System.out.println(e);
+		        }
+		    }
+		    return homeImageService.findHeader();
 			}
 	
 	
-		
 	}
 
 

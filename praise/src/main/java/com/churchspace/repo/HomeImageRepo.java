@@ -13,8 +13,16 @@ import com.churchspace.entity.HomeImage;
 public  interface HomeImageRepo extends JpaRepository<HomeImage, Integer> {
 	
 	
-    @Query(value="select * from home_image where active = true", nativeQuery = true)
-    public List<HomeImage> findActive();
-    
+	@Query(value="select * from home_image where active = true and description = 'Home Page Slides'", nativeQuery = true)
+	public List<HomeImage> findActiveSlides();
+
+	@Query(value="select * from home_image where description = 'Home Page Slides'", nativeQuery = true)
+	public List<HomeImage> findAllSlides();
+
+	@Query(value="select * from home_image where description = 'Site Background'", nativeQuery = true)
+	public List<HomeImage> findBackground();
+
+	@Query(value="select * from home_image where description = 'Header Logo'", nativeQuery = true)
+	public List<HomeImage> findHeader();
 
 }

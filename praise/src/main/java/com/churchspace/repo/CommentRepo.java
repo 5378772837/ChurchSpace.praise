@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.churchspace.entity.Comment;
-import com.churchspace.entity.Subject;
 
 @Repository
 public interface CommentRepo extends JpaRepository<Comment, Integer>{

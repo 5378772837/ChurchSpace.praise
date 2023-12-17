@@ -18,17 +18,27 @@ public class HomeImageService {
 	    homeImageRepo.save(photo);
 
 	}
-	
-	public List<HomeImage>findAll(){	
-	   return  homeImageRepo.findAll();
 
-	}
-	
-	public List<HomeImage> findActive(){
-		List <HomeImage> images = homeImageRepo.findActive();
+	public List<HomeImage> findBackground(){
+		List <HomeImage> images = homeImageRepo.findBackground();
 		return images;
 	}
-
+	
+	public List<HomeImage> findHeader(){
+		List <HomeImage> images = homeImageRepo.findHeader();
+		return images;
+	}
+	
+	public List<HomeImage> findAllSlides(){
+		List <HomeImage> images = homeImageRepo.findAllSlides();
+		return images;
+	}
+	
+	public List<HomeImage> findActiveSlides(){
+		List <HomeImage> images = homeImageRepo.findActiveSlides();
+		return images;
+	}
+	
 	public void update(HomeImage photo) throws Exception{
 		if(photo.getId() != null) {
 		    homeImageRepo.save(photo);

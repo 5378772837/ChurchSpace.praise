@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.churchspace.entity.Comment;
-import com.churchspace.entity.Subject;
 import com.churchspace.security.jwt.JwtUtils;
 import com.churchspace.service.CommentService;
 

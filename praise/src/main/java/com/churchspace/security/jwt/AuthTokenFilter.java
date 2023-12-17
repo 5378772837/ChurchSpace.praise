@@ -18,7 +18,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.churchspace.security.jwt.AuthTokenFilter;
-import com.churchspace.security.jwt.JwtUtils;
 import com.churchspace.security.services.UserDetailsServiceImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {

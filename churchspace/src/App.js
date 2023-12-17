@@ -19,6 +19,7 @@ import MyMessages from "./components/pages/MyMessages";
 import NewMessage from "./components/pages/NewMessage";
 import Profile from "./components/pages/Profile";
 import Admin from "./components/pages/Admin";
+import SiteSetUp from "./components/pages/SiteSetUp";
 
 
 
@@ -53,6 +54,7 @@ const App = () => {
           <Route exact path="/Give" element={<Give user={user} setUser={setUser} />} />
           <Route path="/Admin" element={<Admin user={user} setUser={setUser}/>} />
           <Route path="/NewMessage" element={<NewMessage user={user} setUser={setUser}/>} />
+          <Route path="/SiteSetUp" element={<SiteSetUp user={user} setUser={setUser}/>} />
       </Routes>
     </PageWrapper>
   )

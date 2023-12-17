@@ -18,7 +18,7 @@ import com.churchspace.security.jwt.JwtUtils;
 import com.churchspace.service.LinkService;
 
 @RestController
-@RequestMapping(value="/Links")
+@RequestMapping(value="/Link")
 @CrossOrigin("*")
 public class LinkController {
 	
@@ -32,15 +32,15 @@ public class LinkController {
 			value="/Pastor/save",
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 	        produces = MediaType.APPLICATION_JSON_VALUE,
-	        method = RequestMethod.GET
+	        method = RequestMethod.POST
 			)
-	public ResponseEntity<Object> saveImage(@RequestHeader(value = "Authorization") String token, @RequestBody Link image) {
+	public ResponseEntity<Object> saveLink(@RequestHeader(value = "Authorization") String token, @RequestBody Link link) {
 		
 		token = token.substring(7).trim();
 	 	ResponseEntity <Object> responseEntity = null;
 	    if (jwtUtil.validateJwtToken(token)) {
 	        try {
-	            linkService.save(image);
+	            linkService.save(link);
 	            List<Link> activeLinks = linkService.findActive();
 		        responseEntity=new ResponseEntity<Object>(activeLinks,HttpStatus.OK);
 	        } catch (Exception e) {
@@ -57,7 +57,7 @@ public class LinkController {
 	
 	
 	@RequestMapping(
-			value="/FindActive",
+			value="/Pastor/findActive",
 	        produces = MediaType.APPLICATION_JSON_VALUE,
 	        method = RequestMethod.GET
 			)
@@ -80,7 +80,7 @@ public class LinkController {
 		}
 	
 	@RequestMapping(
-			value="/Pastor/FindAll",
+			value="/Pastor/findAll",
 	        produces = MediaType.APPLICATION_JSON_VALUE,
 	        method = RequestMethod.GET
 			)

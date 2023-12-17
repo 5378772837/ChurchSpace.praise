@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.churchspace.entity.Subject;
 import com.churchspace.entity.Topic;
 import com.churchspace.security.jwt.JwtUtils;
 import com.churchspace.service.TopicService;
