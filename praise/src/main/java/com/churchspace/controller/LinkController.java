@@ -80,6 +80,29 @@ public class LinkController {
 		}
 	
 	@RequestMapping(
+			value="/findActive",
+	        produces = MediaType.APPLICATION_JSON_VALUE,
+	        method = RequestMethod.GET
+			)
+	public ResponseEntity<Object> findActiveLinks() {
+
+	 	ResponseEntity <Object> responseEntity = null;
+
+	        try {
+	            List<Link> activeLinks = linkService.findActive();
+		        responseEntity=new ResponseEntity<Object>(activeLinks,HttpStatus.OK);
+	        } catch (Exception e) {
+	            System.out.println(e);
+	            responseEntity=new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+	        } catch (Error e) {
+	            System.out.println(e);
+	            responseEntity=new ResponseEntity<Object>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+	        }
+	    
+	    return responseEntity;
+		}
+	
+	@RequestMapping(
 			value="/Pastor/findAll",
 	        produces = MediaType.APPLICATION_JSON_VALUE,
 	        method = RequestMethod.GET
