@@ -46,7 +46,7 @@ function LinkMaint({renderActiveLinks,renderAllLinks,renderAddLink,user})  {
   },
   })
   .then((response) => {
-    console.log("response data", response.data);
+    console.log("Active Links Response Data", response.data);
     setLinks(response.data); // Make sure response.data is an array
   })
   .catch((error) => {
@@ -55,6 +55,7 @@ function LinkMaint({renderActiveLinks,renderAllLinks,renderAddLink,user})  {
   };
   
   const findAllLinks = (event) => {
+
     setRenderEditLink(false);
     
   axios.get("http://localhost:8080/Link/Pastor/findAll", {
@@ -63,7 +64,7 @@ function LinkMaint({renderActiveLinks,renderAllLinks,renderAddLink,user})  {
   },
 })
   .then((response) => {
-    console.log("response data", response.data);
+    console.log("Active Links Response Data", response.data);
     setLinks(response.data); // Make sure response.data is an array
   })
   .catch((error) => {

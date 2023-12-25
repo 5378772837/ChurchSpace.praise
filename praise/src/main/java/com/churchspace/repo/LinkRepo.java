@@ -12,6 +12,6 @@ import com.churchspace.entity.Link;
 public  interface LinkRepo extends JpaRepository<Link, Integer> {
 	
 	
-    @Query(value="select * from home_image where active = true", nativeQuery = true)
+    @Query(value="select * from link where active = true", nativeQuery = true)
     public List<Link> findActive();
 }
