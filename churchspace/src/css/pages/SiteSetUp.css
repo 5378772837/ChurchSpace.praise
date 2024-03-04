@@ -38,7 +38,6 @@
     align-items:center;
     color: whitesmoke;
     background-color: navy;
-    outline:solid silver;
     flex-grow: 1;
     overflow:auto;
 
@@ -107,14 +106,12 @@ height:100%;
 .pastor-sub-header{
     height:10%;
     width:100%;
-    outline: solid silver;
-    background-color: grey;
-
+    background-color:silver;
 }
 .pastor-sub-body{
     height:90%;
     width:100%;
-    outline: solid siver;
+
     flex-wrap: wrap;
     /* overflow:auto; */
     scroll-behavior: auto;

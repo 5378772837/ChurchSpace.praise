@@ -18,10 +18,10 @@ function LinkMaint({renderActiveLinks,renderAllLinks,renderAddLink,user})  {
 
   useEffect(() => {
     if(renderActiveLinks){
-        findActiveLinks()
+        findActiveLinks();
     } 
     else if(renderAllLinks){
-        findAllLinks()
+        findAllLinks();
     }
   }, []);
   
@@ -36,10 +36,10 @@ function LinkMaint({renderActiveLinks,renderAllLinks,renderAddLink,user})  {
 
 
 
-  const findActiveLinks = (event) => {
+  const findActiveLinks = () => {
 
     setRenderEditLink(false)
-    
+  try{
   axios.get("http://localhost:8080/Link/Pastor/findActive", {
   headers: {
     Authorization: `Bearer ${user.token}`,
@@ -52,17 +52,20 @@ function LinkMaint({renderActiveLinks,renderAllLinks,renderAddLink,user})  {
   .catch((error) => {
     console.log(error);
   });
+  }catch (error) {
+    console.log(error);
+  }
   };
   
   const findAllLinks = (event) => {
 
     setRenderEditLink(false);
-    
+  try{
   axios.get("http://localhost:8080/Link/Pastor/findAll", {
   headers: {
     Authorization: `Bearer ${user.token}`,
   },
-})
+  })
   .then((response) => {
     console.log("Active Links Response Data", response.data);
     setLinks(response.data); // Make sure response.data is an array
@@ -70,6 +73,9 @@ function LinkMaint({renderActiveLinks,renderAllLinks,renderAddLink,user})  {
   .catch((error) => {
     console.log(error);
   });
+} catch (error) {
+  console.log(error);
+}
 };
 
 
@@ -85,7 +91,7 @@ function LinkMaint({renderActiveLinks,renderAllLinks,renderAddLink,user})  {
   };
 
   const updateLink = () => {
-
+    try{
     axios
     .post('http://localhost:8080/Link/Pastor/updateLink', updatedLink, {
       headers: {
@@ -98,28 +104,36 @@ function LinkMaint({renderActiveLinks,renderAllLinks,renderAddLink,user})  {
     .catch((error) => {
       console.error(error); // Log and handle any errors
     });
+  }catch (error) {
+    console.log(error);
   }
+  };
 
   const saveLink = () => {
-    console.log('You are here at the save link after clicking save link')
-    axios
-    .post('http://localhost:8080/Link/Pastor/save', link, {
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    })
-    .then((response) => {
-      setLinks(response.data);
-    })
-    .catch((error) => {
-      console.error(error); // Log and handle any errors
-    });
-  }
+    console.log('You are here at the save link after clicking save link');
+  
+    try {
+      axios
+        .post('http://localhost:8080/Link/Pastor/save', link, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        })
+        .then((response) => {
+          setLinks(response.data);
+        })
+        .catch((error) => {
+          console.error(error); // Log and handle any errors
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
 
 
-const addLink = (event) => {
+const addLink = () => {
 
     return (
       
@@ -216,7 +230,7 @@ const showLinks = () => {
 
 
 return (
-    <div className='flex-col background fill center'>
+    <div className='flex-col background fill'>
         <div className='flex-row flex-wrap full-width'>
       {renderActiveLinks && showLinks()}
       {renderAllLinks && showLinks()}

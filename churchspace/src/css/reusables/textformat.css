@@ -1,5 +1,5 @@
 .small{
-    font-size: 10px;
+    font-size: 15px;
 }
 .medium{
     font-size: 20px;
@@ -18,6 +18,15 @@
 }
 .navy{
     color:navy;
+}
+.bg-navy{
+    background-color: navy;
+    color: white;
+}
+
+.bg-grey{
+    background-color: grey;
+    color: navy;
 }
 
 .input-box{

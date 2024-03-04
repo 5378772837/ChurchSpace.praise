@@ -11,18 +11,21 @@ function Links(props) {
 
   const [links, setLinks]=useState([]);
   
-  const findActiveLinks = (event) => {
+  const findActiveLinks = () => {
+    try {
+      axios.get("http://localhost:8080/Link/findActive", {
     
-  axios.get("http://localhost:8080/Link/findActive", {
-  
-  })
-  .then((response) => {
-    console.log("Active Links Response Data", response.data);
-    setLinks(response.data); // Make sure response.data is an array
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+      })
+      .then((response) => {
+        console.log("Active Links Response Data", response.data);
+        setLinks(response.data); // Make sure response.data is an array
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
   
   useEffect(() => {
@@ -54,7 +57,7 @@ const showLinks = () => {
   
   return (
     
-    <div className='flex-col background fill center'>
+    <div className='flex-col background fill'>
         <div className='flex-row center flex-wrap'>
         {showLinks()}
         </div>

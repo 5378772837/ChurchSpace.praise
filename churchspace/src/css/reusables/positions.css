@@ -8,6 +8,10 @@
     
 }
 
+.top{
+    vertical-align: top;
+}
+
 .right{
     justify-content: right;
     align-items: right;
