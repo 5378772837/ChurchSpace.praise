@@ -33,7 +33,7 @@ function SiteSetUp(props)  {
 
     return (
             <div className= 'fill'>
-              <div className='pastor-sidebar justify-content-center'>
+              <div className='pastor-sidebar'>
               <SiteSetUpSidebar
           setRenderActiveLinks={setRenderActiveLinks}
           setRenderAllLinks={setRenderAllLinks}
@@ -46,8 +46,8 @@ function SiteSetUp(props)  {
         />
                 </div>
               <div className='flex-col-past'>
-                <div className="pastor-sub-header center">
-                  <a className='large'>Site Maintenance</a>
+                <div className="pastor-sub-header center large">
+                  Site Maintenance
                 </div>
               <div className='flex-row fill'>
               {renderAllLinks && showLinks()}

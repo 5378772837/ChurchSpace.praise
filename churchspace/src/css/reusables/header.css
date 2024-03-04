@@ -33,14 +33,39 @@
     width: 100%;
 }
 .header-link{
+    border-radius: 3px;
+    font-size: larger;
+    background-color: darkslategray;
+    color:white;
+    margin:1px;
+    /* border-width: 1px;
+    border-style: solid;
+    border-color: grey; */
+    height:88%;
+    width: 175px;
+    justify-content: center;
+    align-items: center;
 
-    width: 150px;
-    border-radius: 5px;
+}
+.header-link:hover{
+    cursor:pointer;
+    background-color: white;
+    color:navy;
+    box-shadow: 0 12px 16px 0 white,0 17px 50px 0 grey;
+    
+    }
+
+.header-main-row{
+    display: flex;
+    height:75%;
+    width:100%;
+}
+.header-link-row{
+    display: flex;
+    height:25%;
+    width:100%;
     align-items: center;
     align-content: center;
+    background-color: darkslategray;
     text-align: center;
-    color: white;
-    flex-shrink: 0;
-    margin:5px;
-
 }

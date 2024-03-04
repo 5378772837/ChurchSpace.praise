@@ -4,5 +4,16 @@
     outline: solid silver;
     border-radius: 5px;
     width: 100%;
+    height: 7%;
+
+}
+.flex-row-bible-results{
+    flex-direction: row;
+    flex-shrink: 0;
+    outline: solid silver;
+    border-radius: 5px;
+    width: 100%;
+    min-height: 500px;
+    height: 93%;
 
 }

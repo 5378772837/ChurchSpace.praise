@@ -246,10 +246,10 @@ function Bible() {
   };
 
   return (
+    <div className = "flex-row fill">
     <div className="flex-col fill">
       <div className="flex-row-bible-header">
       <h1 className="flex-col quarter-width">Scripture Search</h1>
-
         <div className="flex-row half-width center">
         <div className="flex-row quarter-width center">
           <label htmlFor="book">Book:</label>
@@ -310,7 +310,8 @@ function Bible() {
       </div>
 
       </div>
-      <div className="flex-col">
+      <div className="flex-row-bible-results">
+      <div className="flex-col fill">
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -324,6 +325,8 @@ function Bible() {
           </div>
         )}
       </div>
+      </div>
+    </div>
     </div>
   );
 }

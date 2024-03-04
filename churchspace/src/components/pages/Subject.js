@@ -6,6 +6,7 @@ import '../../css/pages/subject.css'
 
 
 function Subject(props)  {
+
   const location = useLocation();
   const { subject } = location.state;
   const [newTopic, setNewTopic] = useState({id:"",topicTitle:"",topicBlog:"",subjectId:subject.id,active:true});
@@ -27,7 +28,7 @@ function Subject(props)  {
   const handleTopicClick = (topicInst) => {
     navigator('/Topic', { state: { topic: topicInst } });
 
-};
+  };
 
 
 useEffect(() => {
@@ -76,82 +77,73 @@ useEffect(() => {
       });
   };
 
-  if (topics.length === 0) {
-    return (
-      <div className = "flex-col fill">
-      <div className = "subject-header justify-content-center">
+
+  const renderSubjects = () =>{
+    if (topics.length === 0) {
+      return(
+      <div className = "flex-col three-quarter-width full-height">
+      <div className = "flex-row subject-header">
         <h1>SUBJECT: {subject.subject}</h1>
       </div>
-      <div className="topic-header center">
-        <a className='large navy'>Create New Topic:</a>
-        <textarea className='sidebar-input-container2' 
-          style={{ whiteSpace: 'normal' }}  
-          name='topicTitle' type='text' 
-          onChange={changeHandler}
-          placeholder="Enter New Topic Title Here" >
-        </textarea>
-        <textarea className='sidebar-input-container3' 
-          style={{ whiteSpace: 'normal' }}  
-          name='topicBlog' type='text' 
-          onChange={changeHandler}
-          placeholder='Enter the new Topic Blog Here'></textarea>
-          <button className="button2" onClick={saveTopic}>ADD NEW TOPIC</button>
+        <div className='flex-row full-width center flex-wrap'>Be the first to post a topic on this subject!</div>
+      </div>)
+    }else{
+      return(
+      <div className = "flex-col three-quarter-width full-height">
+        <div className = "flex-row subject-header">
+          <h1>SUBJECT: {subject.subject}</h1>
+        </div>
+        <div className='flex-row full-width center flex-wrap'>
+        {topics.map((topicInst) => {          
+          const { id, topicTitle, topicBlog, creatorName, topicDate, subjectId, active} = topicInst
+          return (
+            
+            <div className='topic-box' key={id} onClick={() => handleTopicClick(topicInst)}>
+                    <div className='flex-row small bg-navy'>ID:&nbsp;{topicInst.id}&nbsp; Date:&nbsp;{topicInst.topicDate}</div>
+                    <div className='flex-row small bg-navy'>Author:&nbsp; {topicInst.creatorName}</div>
+                    <div className = 'flex-row large flex-wrap'> {topicInst.topicTitle} </div>
+                    <div className = 'flex-row medium flex-wrap'>{topicInst.topicBlog} </div>
+              </div>
+              
+          );
+        })}
+        </div>
       </div>
-      <div>Loading Topics now. You could be the first to post a topic on this Subject..</div>
-      </div>
-    );
-  }
+      )
+    }
 
-    
-      return (
-        <div className = "flex-col fill">
-          <div className = "flex-row subject-header justify-content-center">
-            <h1>SUBJECT: {subject.subject}</h1>
+  }
+    return (
+      <div className = "flex-col fill">
+      <div className='topic-body'>
+        <div className = 'flex-col quarter-width full-height top'>
+          <div className = "flex-row subject-header">
+            <h1>Create A New Topic</h1>
           </div>
-          <div className="topic-header center">
-            <a className='large navy'>Create New Topic:</a>
-            <textarea className='sidebar-input-container2' 
+          <div className='flex-row full-width center'>
+            <textarea className='input-container-2' 
               style={{ whiteSpace: 'normal' }}  
               name='topicTitle' type='text' 
               onChange={changeHandler}
               placeholder="Enter New Topic Title Here" >
             </textarea>
-            <textarea className='sidebar-input-container3' 
+          </div>
+          <div className='flex-row full-width center'>
+            <textarea className='input-container-3' 
               style={{ whiteSpace: 'normal' }}  
               name='topicBlog' type='text' 
               onChange={changeHandler}
-              placeholder='Enter the new Topic Blog Here'></textarea>
-              <button className="button2" onClick={saveTopic}>ADD NEW TOPIC</button>
+              placeholder='Enter the new Topic Blog Here'>
+            </textarea>
           </div>
-          <div className='topic-body'>
-          {topics.map((topicInst) => {          
-            const { id, topicTitle, topicBlog, creatorName, topicDate, subjectId, active} = topicInst
-            return (
-              
-              <div className='topic-box' key={id} onClick={() => handleTopicClick(topicInst)}>
-                
-
-                    <div className="topic-info-col">
-                      <div className="flex-row large"> ID: {topicInst.id}</div>
-                      <div className="flex-row"> Date: {topicInst.topicDate}</div>
-                      <div className="flex-row">Creator Name: {topicInst.creatorName}</div>
-                    </div>
-                  
-                  <div className="topic-blog-col">
-                    <div className='flex-row large'>
-                    Title: {topicInst.topicTitle}
-                    </div>
-                    <div className = 'flex-row medium flex-wrap'>
-                    Blog: {topicInst.topicBlog}
-                    </div>
-                    </div>
-                </div>
-                
-            );
-          })}
+          <div className='flex-row full-width center'>
+            <button className="button2" onClick={saveTopic}>ADD NEW TOPIC</button>
+          </div>
         </div>
-        </div>
-      );
-      }
+        {renderSubjects()}
+        </div> 
+        </div> 
+    );
+ }
       
           export default Subject

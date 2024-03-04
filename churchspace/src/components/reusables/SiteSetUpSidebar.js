@@ -49,30 +49,29 @@ function SiteSetUpSidebar({setRenderActiveLinks,setRenderAllLinks,setRenderAddLi
 
 return (
 <div className = 'flex-col fill'>
-
-            <h3>Hello {user.name}</h3>
-            <div className="flex-row">
+            <h3 className="flex-row center large">Hello {user.name}</h3>
+            <div className="flex-row center">
             <button className="button2" onClick={findAllLinks}>FIND ALL LINKS</button>
             </div>
-            <div className="flex-row">
+            <div className="flex-row center">
             <button className="button2" onClick={findActiveLinks}>FIND ACTIVE LINKS</button>
             </div>
-            <div className="flex-row">
+            <div className="flex-row center">
             <button className="button2" onClick={addLink}>ADD NEW LINK</button>
             </div>
-            <div className="flex-row ">
+            <div className="flex-row center">
             <button className="button2" onClick={findBackground}>FIND BACKGROUND IMAGE</button>
             </div>
-            <div className="flex-row ">
+            <div className="flex-row center">
             <button className="button2" onClick={findHeader}>FIND HEADER IMAGE</button>
             </div>
-            <div className="flex-row ">
+            <div className="flex-row center">
             <button className="button2" onClick={findActiveSlides}>FIND ACTIVE SLIDES</button>
             </div>
-            <div className="flex-row ">
+            <div className="flex-row center">
             <button className="button2" onClick={findAllSlides}>FIND ALL SLIDES</button>
             </div>
-            <div className="flex-row ">
+            <div className="flex-row center">
             <button className="button2" onClick={addSlide}>ADD NEW SLIDE</button>
             </div> 
 </div>
