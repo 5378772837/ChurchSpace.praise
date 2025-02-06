@@ -15,7 +15,7 @@ public class JwtResponse {
 		this.email = email;
 		this.name = name;
 		this.roles = roles;
-}
+	}
 
 	public String getToken() {
 		return token;

@@ -19,7 +19,7 @@ public class Link {
 	@Column(name = "link_name")
 	private String linkName;
 
-	@Column(name = "link_Desc")
+	@Column(name = "link_desc")
 	private String linkDescription;
 	
 	@Column(name = "photo_url")
